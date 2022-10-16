@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://img/Panel.png" type="Texture" id=1]
+[ext_resource path="res://theme/_Panel.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=3]
+code = "/*
+	動的電子背景シェーダー by あるる（きのもと 結衣） @arlez80
+	Procedural Electric Background Shader by Yui Kinomoto @arlez80
+
+	MIT License
+*/
+shader_type canvas_item;
+
+uniform vec4 background_color : hint_color = vec4( 0.0, 0.0, 0.0, 1.0 );
+uniform vec4 line_color : hint_color = vec4( 0.0, 1.0, 1.0, 1.0 );
+uniform float line_freq = 9.56;
+uniform float height = 0.6;
+uniform float speed = 0.8;
+uniform vec2 scale = vec2( 2.0, 16.0 );
+
+void fragment( )
+{
+	vec2 uv = UV * scale;
+	float shift = cos( floor( uv.y ) );
+	uv.x += shift;
+
+	float freq = clamp( cos( uv.x * line_freq ) * 3.0, 0.0, 1.0 ) * height;
+	float line = 1.0 - clamp( abs( freq - mod( uv.y, 1.0 ) ) * 11.0, 0.0, 1.0 );
+
+	COLOR = mix( background_color, line_color, line * mod( uv.x - TIME * speed * abs( shift ), 1.0 ) /*  * mod( TIME + shift, 1.0 ) */ );
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/background_color = Color( 0, 0, 0, 1 )
+shader_param/line_color = Color( 0, 0.6, 1, 1 )
+shader_param/line_freq = 9.56
+shader_param/height = 0.6
+shader_param/speed = 0.8
+shader_param/scale = Vector2( 2, 16 )
+
+[node name="#Panel" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CR_Line" type="MarginContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_right = -4.0
+
+[node name="CR" type="ColorRect" parent="Control/CR_Line"]
+margin_right = 472.0
+margin_bottom = 270.0
+
+[node name="Frame" type="Control" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="MarginContainer" parent="Control/Frame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="CR" type="ColorRect" parent="Control/Frame/Background"]
+material = SubResource( 4 )
+margin_right = 472.0
+margin_bottom = 262.0
+
+[node name="NPR" type="NinePatchRect" parent="Control/Frame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15

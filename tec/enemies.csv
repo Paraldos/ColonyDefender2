@@ -1,0 +1,12 @@
+id;hp;dmg;credits
+#Enemy;0;0;0
+Asteroid01;30;15;6
+Asteroid02;20;10;4
+Asteroid03;15;10;3
+Asteroid04;5;5;2
+Asteroid05;15;10;3
+Asteroid06;15;10;3
+Fighter01;5;5;2
+Fighter02;5;5;2
+Gunship;15;5;3
+Missile;10;20;4

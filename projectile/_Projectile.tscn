@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://projectile/_Projectile.gd" type="Script" id=2]
+[ext_resource path="res://tec/Hitbox_.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 0.372549, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 2.0
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 2.0
+scale_random = 0.2
+color_ramp = SubResource( 2 )
+
+[node name="#Projectile" type="Node2D"]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+script = ExtResource( 2 )
+
+[node name="Particles" type="Particles2D" parent="."]
+amount = 10
+lifetime = 0.3
+local_coords = false
+process_material = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="VisibilityNotifier" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( -1, -1, 2, 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hitbox_" parent="." instance=ExtResource( 3 )]
+collision_layer = 0
+collision_mask = 0
+
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
+[connection signal="area_entered" from="Hitbox_" to="." method="_on_Hitbox__area_entered"]

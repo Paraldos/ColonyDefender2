@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://enemies/_Enemy.gd" type="Script" id=3]
+[ext_resource path="res://tec/Hurtbox_.tscn" type="PackedScene" id=4]
+[ext_resource path="res://tec/Hitbox_.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="#Enemy" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="VisibilityNotifier" type="VisibilityNotifier2D" parent="Sprite"]
+
+[node name="Hitbox_" parent="Sprite" instance=ExtResource( 5 )]
+collision_layer = 0
+collision_mask = 8
+
+[node name="Hurtbox_" parent="Sprite" instance=ExtResource( 4 )]
+collision_layer = 16
+collision_mask = 0
+
+[node name="PositionMuzzle" type="Position2D" parent="."]
+
+[node name="AnimHit" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/hit = SubResource( 2 )
+
+[connection signal="screen_exited" from="Sprite/VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
+[connection signal="area_entered" from="Sprite/Hitbox_" to="." method="_on_Hitbox__area_entered"]
+[connection signal="hit" from="Sprite/Hurtbox_" to="." method="_on_Hurtbox__hit"]

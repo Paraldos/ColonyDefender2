@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Powerup/_Powerup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://img/HPContainer.png" type="Texture" id=2]
+[ext_resource path="res://Powerup/HP.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="HP" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/AreaCollect" index="0"]
+shape = SubResource( 1 )

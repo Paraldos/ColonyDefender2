@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://tec/Utils.gd" type="Script" id=1]
+[ext_resource path="res://tec/myPreload.gd" type="Script" id=2]
+[ext_resource path="res://tec/SceneTransition.tscn" type="PackedScene" id=3]
+[ext_resource path="res://tec/mySignals.gd" type="Script" id=4]
+[ext_resource path="res://tec/myDB.gd" type="Script" id=5]
+[ext_resource path="res://tec/myMusic.tscn" type="PackedScene" id=6]
+
+[node name="Utils" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="mySignals" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="SceneTransition" parent="." instance=ExtResource( 3 )]
+
+[node name="myDB" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="myPreload" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="myMusic" parent="." instance=ExtResource( 6 )]
