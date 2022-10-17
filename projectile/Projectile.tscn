@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://projectile/_Projectile.gd" type="Script" id=2]
-[ext_resource path="res://tec/Hitbox_.tscn" type="PackedScene" id=3]
+[ext_resource path="res://projectile/Projectile.gd" type="Script" id=2]
+[ext_resource path="res://Tec/Hitbox_.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 0.372549, 1, 1, 1, 0 )

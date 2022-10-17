@@ -70,7 +70,7 @@ func _frame_color(target):
 	tween.tween_property(
 		frame,
 		"modulate",
-		target, 
+		target,
 		animationSpeed)
 
 func _crline_color(target):
@@ -78,21 +78,21 @@ func _crline_color(target):
 	tween.tween_property(
 		crline,
 		"modulate",
-		target, 
+		target,
 		animationSpeed)
 
 func _control_size(target):
 	var tween = create_tween()
 	tween.tween_property(
-		control, 
+		control,
 		"rect_size",
-		Vector2(target), 
+		Vector2(target),
 		animationSpeed)
 
 func _control_position(target):
 	var tween = create_tween()
 	tween.tween_property(
-		control, 
-		"rect_position", 
-		target, 
+		control,
+		"rect_position",
+		target,
 		animationSpeed)

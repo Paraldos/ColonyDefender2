@@ -3,13 +3,6 @@
 [ext_resource path="res://enemies/Asteroid01.tscn" type="PackedScene" id=1]
 
 [node name="Asteroid05" instance=ExtResource( 1 )]
-id = "asteroid05"
 
-[node name="Sprite" parent="." index="0"]
+[node name="Sprite" parent="." index="1"]
 frame = 5
-
-[node name="CS" parent="Sprite/Hitbox" index="0"]
-polygon = PoolVector2Array( -21, 9, -21, 3, -19, -1, -10, -10, -8, -14, -8, -21, -4, -25, 1, -25, 23, -2, 23, 7, 19, 11, 9, 11, 5, 16, 1, 16, -2, 21, -8, 21 )
-
-[node name="CS" parent="Sprite/Hurtbox" index="0"]
-polygon = PoolVector2Array( -21, 9, -21, 3, -19, -1, -10, -10, -8, -14, -8, -21, -4, -25, 1, -25, 23, -2, 23, 7, 19, 11, 9, 11, 5, 16, 1, 16, -2, 21, -8, 21 )

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://img/EnergyContainer.png" type="Texture" id=1]
 [ext_resource path="res://audio/powerup.wav" type="AudioStream" id=2]
-[ext_resource path="res://Powerup/_Powerup.gd" type="Script" id=3]
+[ext_resource path="res://Powerup/Powerup.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -107,14 +107,14 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "_explosion"
+"method": "explosion"
 } ]
 }
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 100.0
 
-[node name="#Collectable" type="Node2D"]
+[node name="Collectable" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]

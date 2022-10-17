@@ -14,8 +14,10 @@ func _attack():
 		_attack_audio()
 		_instance_projectile()
 
+const PROJECTILE = preload("res://projectile/Projectile01.tscn")
+
 func _instance_projectile():
-	var new = MyPreload.PROJECTILE[1].instance()
+	var new = PROJECTILE.instance()
 	new.position = muzzle.global_position
 	new.dmg = gunDMG + Utils.rng.randi_range(-1, 1)
 	new.velocity = Vector2(0, gunSpeed)

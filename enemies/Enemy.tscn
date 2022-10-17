@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://enemies/_Enemy.gd" type="Script" id=3]
-[ext_resource path="res://tec/Hurtbox_.tscn" type="PackedScene" id=4]
-[ext_resource path="res://tec/Hitbox_.tscn" type="PackedScene" id=5]
+[ext_resource path="res://enemies/Enemy.gd" type="Script" id=3]
+[ext_resource path="res://Tec/Hurtbox_.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tec/Hitbox_.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 length = 0.001

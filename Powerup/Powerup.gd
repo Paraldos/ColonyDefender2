@@ -1,4 +1,5 @@
 extends Node2D
+class_name PowerUp
 
 onready var magnet_shape = $Sprite/AreaMagnet/CS
 onready var anim = $Anim
@@ -35,8 +36,10 @@ func _on_AreaCollect_body_entered(_body):
 	anim.play("pickup")
 	_pickup()
 
-func _explosion():
-	var new = MyPreload.EXPLOSIONS[4].instance()
+const EXPLOSION = preload("res://explosions/Explosion04.tscn")
+
+func explosion():
+	var new = EXPLOSION.instance()
 	new.global_position = global_position
 	get_tree().current_scene.add_child(new)
 

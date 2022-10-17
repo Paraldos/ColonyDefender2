@@ -13,7 +13,7 @@ func _ready():
 
 func _on_energy_update():
 	_update_label(Utils.player.energy, Utils.player.energy_max)
-	_update_max(Utils.player.energy_max) 
+	_update_max(Utils.player.energy_max)
 	_update_value(float(Utils.player.energy))
 
 func _update_label(newValue, newMaxValue):

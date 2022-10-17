@@ -6,7 +6,7 @@ func _ready():
 	_enemies()
 
 func _enemies():
-	var file = _load_csv("res://tec/enemies.csv")
+	var file = _load_csv("res://Tec/enemies.csv")
 	var keys = _get_keys(file)
 	file.remove(0)
 	for el in file:

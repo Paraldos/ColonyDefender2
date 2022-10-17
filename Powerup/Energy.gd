@@ -1,4 +1,4 @@
-extends "res://powerup/_Powerup.gd"
+extends PowerUp
 
 func _pickup():
 	Utils.player.energy += 1

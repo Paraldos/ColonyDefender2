@@ -1,4 +1,4 @@
-extends "res://enemies/_Enemy.gd"
+extends "res://enemies/Enemy.gd"
 
 onready var rayCast_right = $RayCast_Right
 onready var rayCast_left = $RayCast_Left
@@ -8,6 +8,8 @@ var ACCELERATION = 25
 var SPEED_MAX = 75
 var velocity = Vector2(0, 150)
 var direction = 1
+
+const PROJECTILE = preload("res://projectile/Projectile02.tscn")
 
 ########################################################################
 func _physics_process(_delta):
@@ -29,7 +31,7 @@ func _on_DirectionTimer_timeout():
 
 ########################################################################
 func _on_AttackTimer_timeout():
-	var new = MyPreload.PROJECTILE[2].instance()
+	var new = PROJECTILE.instance()
 	new.global_position = muzzle.global_position
 	new.dmg = dmg
 	get_tree().current_scene.add_child(new)

@@ -19,7 +19,7 @@ var player = {}
 var player_pos
 
 #################################################
-func _ready():
+func _enter_tree():
 	rng.randomize()
 
 #################################################
@@ -29,17 +29,17 @@ func _new_game():
 
 #################################################
 func _dmg_label(dmg, pos):
-	var new = MyPreload.DMGLABEL.instance()
+	var new = preload("res://Tec/DmgLabel.tscn").instance()
 	new.global_position = pos
 	new.dmg = dmg
 	get_tree().current_scene.add_child(new)
 
 #################################################
 func _pause():
-	var new = MyPreload.PAUSEMENU.instance()
+	var new = preload("res://menu/PauseMenu.tscn").instance()
 	get_tree().current_scene.add_child(new)
 
 func _gameover():
 	yield(get_tree().create_timer(2), "timeout")
-	var newMenu = MyPreload.GAMEOVERMENU.instance()
+	var newMenu = preload("res://menu/GameOverMenu.tscn").instance()
 	get_tree().current_scene.add_child(newMenu)

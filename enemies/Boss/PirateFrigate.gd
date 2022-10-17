@@ -1,4 +1,4 @@
-extends "res://enemies/Boss/#Boss.gd"
+extends "res://enemies/Boss/Boss.gd"
 
 var vulnerable = false
 onready var bossUi = $BossUI
@@ -11,7 +11,7 @@ func _start():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self,
 		"global_position",
-		global_position + Vector2(0, 150), 
+		global_position + Vector2(0, 150),
 		2)
 	###
 	yield(tween, "finished")

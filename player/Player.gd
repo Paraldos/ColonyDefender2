@@ -107,8 +107,11 @@ func _on_Hurtbox__hit(dmg):
 		audioDeath.play()
 		deathTimer.start()
 
+
+const EXPLOSION = preload("res://explosions/Explosion03.tscn")
+
 func _on_DeathTimer_timeout():
-	var newExplosion = MyPreload.EXPLOSIONS[3].instance()
+	var newExplosion = EXPLOSION.instance()
 	newExplosion.global_position = global_position
 	get_tree().current_scene.add_child(newExplosion)
 	###

@@ -1,4 +1,4 @@
-extends "res://menu/_Menu.gd"
+extends "res://menu/Menu.gd"
 
 func _on_BtnAgain_pressed():
 	Utils._new_game()

@@ -22,5 +22,5 @@ func _megashield():
 		Utils.player.energy -= 1
 		MySignals.emit_signal("energy_update")
 		###
-		var new = MyPreload.MEGASHIELD.instance()
+		var new = preload("res://player/MegaShield.tscn").instance()
 		add_child(new)

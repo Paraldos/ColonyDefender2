@@ -1,5 +1,14 @@
 extends ParallaxBackground
 
+const BACKGROUND_TEXTURES = [
+	preload("res://img/Space_01-Sheet.png"),
+	preload("res://img/Space_02-Sheet.png"),
+	preload("res://img/Space_03-Sheet.png"),
+	preload("res://img/Space_04-Sheet.png")
+]
+
+
+
 onready var sprite01 = $ParallaxLayer/Sprite
 onready var sprite02 = $ParallaxLayer2/Sprite
 onready var sprite03 = $ParallaxLayer3/Sprite
@@ -19,22 +28,22 @@ func _on_stop_background():
 	tween.tween_property(
 		self,
 		"SPEED_Y",
-		0.0, 
+		0.0,
 		6)
 	var tween2 = create_tween()
 	tween2.tween_property(
 		self,
 		"SPEED_X",
-		0.0, 
+		0.0,
 		6)
 
 func _randomize_background():
-	var backgroundNr = Utils.rng.randi_range(0, MyPreload.BACKGROUND_TEXTURES.size()-1)
-	sprite01.texture = MyPreload.BACKGROUND_TEXTURES[backgroundNr]
-	sprite02.texture = MyPreload.BACKGROUND_TEXTURES[backgroundNr]
-	sprite03.texture = MyPreload.BACKGROUND_TEXTURES[backgroundNr]
-	sprite04.texture = MyPreload.BACKGROUND_TEXTURES[backgroundNr]
-	sprite05.texture = MyPreload.BACKGROUND_TEXTURES[backgroundNr]
+	var backgroundNr = Utils.rng.randi_range(0, BACKGROUND_TEXTURES.size()-1)
+	sprite01.texture = BACKGROUND_TEXTURES[backgroundNr]
+	sprite02.texture = BACKGROUND_TEXTURES[backgroundNr]
+	sprite03.texture = BACKGROUND_TEXTURES[backgroundNr]
+	sprite04.texture = BACKGROUND_TEXTURES[backgroundNr]
+	sprite05.texture = BACKGROUND_TEXTURES[backgroundNr]
 
 func _physics_process(_delta):
 	var i = 1

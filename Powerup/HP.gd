@@ -1,4 +1,4 @@
-extends "res://Powerup/_Powerup.gd"
+extends PowerUp
 
 
 func _pickup():

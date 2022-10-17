@@ -6,6 +6,6 @@ func _megabomb():
 		Utils.player.energy -= 1
 		MySignals.emit_signal("energy_update")
 		###
-		var new = MyPreload.MEGABOMB.instance()
+		var new = preload("res://player/Megabomb.tscn").instance()
 		new.global_position = global_position
 		get_tree().current_scene.add_child(new)

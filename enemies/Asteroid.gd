@@ -1,4 +1,4 @@
-extends "res://enemies/_Enemy.gd"
+extends "res://enemies/Enemy.gd"
 
 onready var hitTimer = $HitTimer
 onready var hitbox = $Sprite/Hitbox_

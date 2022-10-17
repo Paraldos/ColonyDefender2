@@ -21,6 +21,6 @@ func _megalaser():
 		Utils.player.energy -= 1
 		MySignals.emit_signal("energy_update")
 		###
-		var new = MyPreload.MEGALSER.instance()
+		var new = preload("res://player/Megalaser.tscn").instance()
 		new.position = Vector2(0, -15)
 		add_child(new)

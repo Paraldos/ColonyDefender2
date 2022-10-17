@@ -1,4 +1,4 @@
-extends "res://enemies/_Enemy.gd"
+extends "res://enemies/Enemy.gd"
 
 var velocity = Vector2(0, 500)
 var move = false

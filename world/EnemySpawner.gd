@@ -6,6 +6,16 @@ var wavePause = 3
 var wave = "pause"
 var wavesToBoss = 10
 
+
+const ASTEROIDS = [
+	preload("res://enemies/Asteroid01.tscn"),
+	preload("res://enemies/Asteroid02.tscn"),
+	preload("res://enemies/Asteroid03.tscn"),
+	preload("res://enemies/Asteroid04.tscn"),
+	preload("res://enemies/Asteroid05.tscn"),
+	preload("res://enemies/Asteroid06.tscn"),
+]
+
 ########################################################################
 func _ready():
 	timerWave.start(wavePause)
@@ -23,32 +33,32 @@ func _physics_process(_delta):
 
 func _spawn_asteroid():
 	timerSpawn.start(0.8)
-	var asteroidNr = Utils.rng.randi_range(0, MyPreload.ASTEROIDS.size() -1)
-	var new = MyPreload.ASTEROIDS[asteroidNr].instance()
+	var asteroidNr = Utils.rng.randi_range(0, ASTEROIDS.size() -1)
+	var new = ASTEROIDS[asteroidNr].instance()
 	new.global_position = _start_position()
 	add_child(new)
 
 func _spawn_fighter1():
 	timerSpawn.start(0.6)
-	var new = MyPreload.FIGHTER01.instance()
+	var new = preload("res://enemies/Fighter01.tscn").instance()
 	new.global_position = _start_position()
 	add_child(new)
 
 func _spawn_fighter2():
 	timerSpawn.start(0.6)
-	var new = MyPreload.FIGHTER02.instance()
+	var new = preload("res://enemies/Fighter02.tscn").instance()
 	new.global_position = _start_position()
 	add_child(new)
 
 func _spawn_gunships():
 	timerSpawn.start(1.2)
-	var new = MyPreload.GUNSHIP.instance()
+	var new = preload("res://enemies/Gunship.tscn").instance()
 	new.global_position = _start_position(40, 30)
 	add_child(new)
 
 func _spawn_missiles():
 	timerSpawn.start(0.5)
-	var new = MyPreload.MISSILE.instance()
+	var new = preload("res://enemies/Missile.tscn").instance()
 	new.global_position = _start_position(20, 30)
 	add_child(new)
 
