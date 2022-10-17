@@ -6,3 +6,9 @@
 
 [node name="Sprite" parent="." index="1"]
 frame = 4
+
+[node name="CS" parent="Sprite/Hitbox_" index="0"]
+polygon = PoolVector2Array( -15, 4, -15, -4, -6, -10, -1, -10, 5, -4, 5, 13, 1, 16, -5, 16 )
+
+[node name="CS" parent="Sprite/Hurtbox_" index="0"]
+polygon = PoolVector2Array( -15, -4, -6, -10, -1, -10, 5, -4, 5, 13, 1, 16, -5, 16, -15, 4 )

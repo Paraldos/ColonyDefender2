@@ -3,7 +3,6 @@ extends Node
 onready var audio = $Audio
 
 const SONGS = [
-	preload("res://music/laserattack.wav"),
 	preload("res://music/Laser Quest Loop.wav"),
 	preload("res://music/The Synths Loop.wav"),
 ]

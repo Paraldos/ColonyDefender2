@@ -4,7 +4,7 @@
 [ext_resource path="res://Tec/Hitbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://img/Bombe-Sheet.png" type="Texture" id=3]
 [ext_resource path="res://img/Explosion03-Sheet.png" type="Texture" id=4]
-[ext_resource path="res://img/line1.png" type="Texture" id=5]
+[ext_resource path="res://img/Fragment01.png" type="Texture" id=5]
 [ext_resource path="res://audio/plasma.wav" type="AudioStream" id=6]
 [ext_resource path="res://audio/charging.wav" type="AudioStream" id=7]
 

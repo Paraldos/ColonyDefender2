@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://theme/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menu/CreditsMenu.gd" type="Script" id=3]
+[ext_resource path="res://background/Background.tscn" type="PackedScene" id=4]
+
+[node name="CreditsMenu" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Background" parent="." index="0" instance=ExtResource( 4 )]
+
+[node name="C" parent="." index="3"]
+margin_left = 88.0
+margin_top = 41.0
+margin_right = -88.0
+margin_bottom = -41.0
+
+[node name="VC" parent="C/MC" index="0"]
+margin_right = 290.0
+margin_bottom = 174.0
+
+[node name="HSeparator3" type="HSeparator" parent="C/MC/VC" index="0"]
+margin_top = 10.0
+margin_right = 290.0
+margin_bottom = 14.0
+
+[node name="Creator" type="Label" parent="C/MC/VC" index="1"]
+margin_top = 24.0
+margin_right = 290.0
+margin_bottom = 41.0
+text = "Game by LilCthulhu"
+align = 1
+
+[node name="Tec" type="Label" parent="C/MC/VC" index="2"]
+margin_top = 51.0
+margin_right = 290.0
+margin_bottom = 68.0
+text = "Code and Engin Support by BackAt50Ft"
+align = 1
+autowrap = true
+
+[node name="Music" type="Label" parent="C/MC/VC" index="3"]
+margin_top = 78.0
+margin_right = 290.0
+margin_bottom = 95.0
+text = "Music by "
+align = 1
+
+[node name="Godot" type="Label" parent="C/MC/VC" index="4"]
+margin_top = 105.0
+margin_right = 290.0
+margin_bottom = 122.0
+text = "Made with Godot Game Engine"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="C/MC/VC" index="5"]
+margin_top = 132.0
+margin_right = 290.0
+margin_bottom = 136.0
+
+[node name="BtnBack" parent="C/MC/VC" index="6" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_top = 146.0
+margin_right = 290.0
+margin_bottom = 163.0
+labelText = "Back"
+startFocus = true
+
+[connection signal="pressed" from="C/MC/VC/BtnBack" to="." method="_on_BtnBack_pressed"]

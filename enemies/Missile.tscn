@@ -136,8 +136,14 @@ texture = ExtResource( 2 )
 [node name="VisibilityNotifier" parent="Sprite" index="0"]
 visible = false
 
+[node name="Hitbox_" parent="Sprite" index="1"]
+visible = false
+
 [node name="CS" type="CollisionPolygon2D" parent="Sprite/Hitbox_" index="0"]
 polygon = PoolVector2Array( -8, -27, -4, -17, -4, 24, -1, 29, 1, 29, 4, 24, 4, -17, 8, -27, 7, -28, -7, -28 )
+
+[node name="Hurtbox_" parent="Sprite" index="2"]
+visible = false
 
 [node name="CS" type="CollisionPolygon2D" parent="Sprite/Hurtbox_" index="0"]
 polygon = PoolVector2Array( -8, -27, -4, -17, -4, 24, -1, 29, 1, 29, 4, 24, 4, -17, 8, -27, 7, -28, -7, -28 )

@@ -1,8 +1,7 @@
 extends "res://enemies/Enemy.gd"
 
-const PROJECTILE = preload("res://projectile/Projectile03.tscn")
-
 ########################################################################
+const PROJECTILE = preload("res://projectile/Projectile03.tscn")
 onready var muzzle = $PositionMuzzle
 var velocity = Vector2(0, Utils.rng.randi_range(120, 180))
 

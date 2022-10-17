@@ -67,9 +67,11 @@ anims/RESET = SubResource( 1 )
 anims/start = SubResource( 2 )
 
 [node name="Name" type="Label" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = -234.0
 theme = ExtResource( 3 )
 text = "Testboss #1"
 align = 1
@@ -78,13 +80,13 @@ valign = 1
 [node name="Health" type="CenterContainer" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
-margin_bottom = 38.0
+margin_bottom = 25.0
 
 [node name="Under" type="TextureProgress" parent="Health"]
 margin_left = 175.0
-margin_top = 13.0
+margin_top = 6.0
 margin_right = 304.0
-margin_bottom = 25.0
+margin_bottom = 18.0
 step = 0.1
 value = 85.0
 texture_under = ExtResource( 1 )
@@ -93,9 +95,9 @@ tint_progress = Color( 0.270588, 0.270588, 0.270588, 1 )
 
 [node name="Over" type="TextureProgress" parent="Health"]
 margin_left = 175.0
-margin_top = 13.0
+margin_top = 6.0
 margin_right = 304.0
-margin_bottom = 25.0
+margin_bottom = 18.0
 step = 0.1
 value = 12.0
 texture_progress = ExtResource( 2 )

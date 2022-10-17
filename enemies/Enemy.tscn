@@ -45,6 +45,7 @@ script = ExtResource( 3 )
 [node name="Hitbox_" parent="Sprite" instance=ExtResource( 5 )]
 collision_layer = 0
 collision_mask = 8
+dmg = 10
 
 [node name="Hurtbox_" parent="Sprite" instance=ExtResource( 4 )]
 collision_layer = 16

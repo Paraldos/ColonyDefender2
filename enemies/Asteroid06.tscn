@@ -10,3 +10,9 @@ frame = 6
 [node name="VisibilityNotifier" parent="Sprite" index="0"]
 position = Vector2( 0, 18.5 )
 scale = Vector2( 0.5, 2.85 )
+
+[node name="CS" parent="Sprite/Hitbox_" index="0"]
+polygon = PoolVector2Array( -15, 4, -15, -4, -1, -18, 5, -18, 13, -12, 13, -5, 22, 4, 21, 14, 15, 19, 4, 19, -14, 8 )
+
+[node name="CS" parent="Sprite/Hurtbox_" index="0"]
+polygon = PoolVector2Array( -15, -4, -1, -18, 5, -18, 13, -12, 13, -5, 22, 4, 21, 14, 15, 19, 4, 19, -14, 8, -15, 4 )

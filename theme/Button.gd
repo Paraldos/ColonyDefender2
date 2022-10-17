@@ -38,3 +38,6 @@ func _on_Button_focus_exited():
 	TR_Left.visible = false
 	TR_Right.visible = false
 
+####################################
+func _on_Button_mouse_entered():
+	grab_focus()

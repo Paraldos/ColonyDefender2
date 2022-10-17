@@ -54,9 +54,9 @@ func _physics_process(delta):
 
 ##### death
 func _death():
-	var x = 1
-	sprite.offset.x = Utils.rng.randf_range(-x, x)
-	sprite.offset.y = Utils.rng.randf_range(-x, x)
+	var offset = 2
+	sprite.offset.x = Utils.rng.randf_range(-offset, offset)
+	sprite.offset.y = Utils.rng.randf_range(-offset, offset)
 
 ##### movement
 func _move(delta):
