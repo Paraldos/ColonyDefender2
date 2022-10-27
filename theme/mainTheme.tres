@@ -4,11 +4,11 @@
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 1 )
-region_rect = Rect2( -14, 0, 108, 4 )
-margin_left = 42.0
-margin_right = 42.0
-margin_top = 4.0
-margin_bottom = 4.0
+region_rect = Rect2( 0, 0, 110, 4 )
+margin_left = 43.0
+margin_right = 41.0
+margin_top = 1.0
+margin_bottom = 1.0
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://theme/Pixel Lofi.otf"
@@ -23,4 +23,4 @@ font_data = SubResource( 1 )
 [resource]
 default_font = SubResource( 2 )
 HSeparator/styles/separator = SubResource( 3 )
-VBoxContainer/constants/separation = 10
+VBoxContainer/constants/separation = 5

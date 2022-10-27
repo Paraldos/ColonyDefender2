@@ -17,34 +17,41 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -119.0
-margin_top = -10.0
+margin_top = -13.0
 margin_right = 119.0
-margin_bottom = 86.0
+margin_bottom = 89.0
 
 [node name="VC" parent="C/MC" index="0"]
 margin_right = 224.0
-margin_bottom = 82.0
+margin_bottom = 88.0
 
 [node name="BtnNew" parent="C/MC/VC" index="0" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 5.0
+margin_top = 2.0
 margin_right = 224.0
-margin_bottom = 22.0
-labelText = "New"
+margin_bottom = 19.0
+labelText = "New Game"
 startFocus = true
 
-[node name="BtnCredits" parent="C/MC/VC" index="1" instance=ExtResource( 4 )]
+[node name="BtnShop" parent="C/MC/VC" index="1" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 32.0
+margin_top = 24.0
 margin_right = 224.0
-margin_bottom = 49.0
+margin_bottom = 41.0
+labelText = "Shop"
+
+[node name="BtnCredits" parent="C/MC/VC" index="2" instance=ExtResource( 4 )]
+anchor_right = 0.0
+margin_top = 46.0
+margin_right = 224.0
+margin_bottom = 63.0
 labelText = "Credits"
 
-[node name="BtnQuit" parent="C/MC/VC" index="2" instance=ExtResource( 4 )]
+[node name="BtnQuit" parent="C/MC/VC" index="3" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 59.0
+margin_top = 68.0
 margin_right = 224.0
-margin_bottom = 76.0
+margin_bottom = 85.0
 labelText = "Quit"
 
 [node name="Logo" type="TextureRect" parent="." index="4"]
@@ -55,5 +62,6 @@ texture = ExtResource( 3 )
 stretch_mode = 4
 
 [connection signal="pressed" from="C/MC/VC/BtnNew" to="." method="_on_BtnNew_pressed"]
+[connection signal="pressed" from="C/MC/VC/BtnShop" to="." method="_on_BtnShop_pressed"]
 [connection signal="pressed" from="C/MC/VC/BtnCredits" to="." method="_on_BtnCredits_pressed"]
 [connection signal="pressed" from="C/MC/VC/BtnQuit" to="." method="_on_BtnQuit_pressed"]

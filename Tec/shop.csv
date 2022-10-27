@@ -1,0 +1,3 @@
+id;max_level;cost;description
+gun_damage;1;5000;For every level you deal 2 additional damage per shoot (base damage is 5).
+hp_level;10;3000;For every level you gain +10 HP, making your more durable during combat.

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Nihilore - Broken Parts - 07 Dissent.mp3-06d9dbbf6c77a7ad0f3e79ce058abaa7.mp3str"
+
+[deps]
+
+source_file="res://music/Nihilore - Broken Parts - 07 Dissent.mp3"
+dest_files=[ "res://.import/Nihilore - Broken Parts - 07 Dissent.mp3-06d9dbbf6c77a7ad0f3e79ce058abaa7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

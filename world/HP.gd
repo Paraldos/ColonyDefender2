@@ -12,8 +12,8 @@ func _ready():
 	_on_hp_update()
 
 func _on_hp_update():
-	_update_label(Utils.player.hp, Utils.player.hp_max)
-	_update_max(Utils.player.hp_max)
+	_update_label(Utils.player.hp, Utils._get_hp_max())
+	_update_max(Utils._get_hp_max())
 	_update_value(float(Utils.player.hp))
 
 func _update_label(newValue, newMaxValue):

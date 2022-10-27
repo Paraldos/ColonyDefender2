@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Nihilore - Consequences EP - 03 Solipsism.mp3-cebbdc0c870245cd6a2e9a1e0d87302a.mp3str"
+
+[deps]
+
+source_file="res://music/Nihilore - Consequences EP - 03 Solipsism.mp3"
+dest_files=[ "res://.import/Nihilore - Consequences EP - 03 Solipsism.mp3-cebbdc0c870245cd6a2e9a1e0d87302a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

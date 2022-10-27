@@ -11,11 +11,11 @@ script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
-hframes = 7
+hframes = 8
 frame = 1
 
-[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hitbox_" index="0"]
-polygon = PoolVector2Array( -29, -5, -3, -28, 11, -30, 24, -25, 31, -13, 13, 16, 0, 28, -10, 30, -23, 30, -28, 24, -30, 13 )
+[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hurtbox" index="0"]
+polygon = PoolVector2Array( -31, -11, -31, -17, -20, -28, -11, -30, -2, -30, 19, -16, 31, 0, 31, 13, 23, 31, 10, 31, -6, 25 )
 
-[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hurtbox_" index="0"]
-polygon = PoolVector2Array( -29, -5, -3, -28, 11, -30, 24, -25, 31, -13, 13, 16, 0, 28, -10, 30, -23, 30, -28, 24, -30, 13 )
+[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hitbox" index="0"]
+polygon = PoolVector2Array( -31, -11, -31, -17, -20, -28, -11, -30, -2, -30, 19, -16, 31, 0, 31, 13, 23, 31, 10, 31, -6, 25 )

@@ -1,8 +1,7 @@
 extends "res://enemies/Enemy.gd"
 
-onready var hitTimer = $HitTimer
-onready var hitbox = $Sprite/Hitbox_
-var velocity = Vector2(Utils.rng.randi_range(-25, 25), Utils.rng.randi_range(150, 200))
+onready var hitbox = $Sprite/Hitbox
+var velocity = Vector2(Utils.rng.randi_range(-25, 25), Utils.rng.randi_range(100, 150))
 
 ########################################################################
 func _ready():

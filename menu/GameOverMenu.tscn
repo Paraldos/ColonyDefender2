@@ -9,19 +9,19 @@
 script = ExtResource( 4 )
 
 [node name="C" parent="." index="2"]
-margin_left = 128.0
-margin_top = 67.0
-margin_right = -128.0
-margin_bottom = -67.0
+margin_left = 131.0
+margin_top = 83.0
+margin_right = -131.0
+margin_bottom = -83.0
 
 [node name="VC" parent="C/MC" index="0"]
-margin_right = 210.0
-margin_bottom = 122.0
+margin_right = 204.0
+margin_bottom = 90.0
 
 [node name="Label" type="Label" parent="C/MC/VC" index="0"]
-margin_top = 23.0
-margin_right = 210.0
-margin_bottom = 45.0
+margin_top = 12.0
+margin_right = 204.0
+margin_bottom = 34.0
 theme = ExtResource( 2 )
 text = "-Game Over-"
 align = 1
@@ -29,17 +29,17 @@ uppercase = true
 
 [node name="BtnAgain" parent="C/MC/VC" index="1" instance=ExtResource( 3 )]
 anchor_right = 0.0
-margin_top = 55.0
-margin_right = 210.0
-margin_bottom = 72.0
+margin_top = 39.0
+margin_right = 204.0
+margin_bottom = 56.0
 labelText = "Try Again"
 startFocus = true
 
 [node name="BtnBack" parent="C/MC/VC" index="2" instance=ExtResource( 3 )]
 anchor_right = 0.0
-margin_top = 82.0
-margin_right = 210.0
-margin_bottom = 99.0
+margin_top = 61.0
+margin_right = 204.0
+margin_bottom = 78.0
 labelText = "Back to Menu"
 
 [connection signal="pressed" from="C/MC/VC/BtnAgain" to="." method="_on_BtnAgain_pressed"]

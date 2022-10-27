@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Nihilore - Broken Parts - 10 Walks of Life.mp3-c4183d210ca4e5763394171d3f66f10c.mp3str"
+
+[deps]
+
+source_file="res://music/Nihilore - Broken Parts - 10 Walks of Life.mp3"
+dest_files=[ "res://.import/Nihilore - Broken Parts - 10 Walks of Life.mp3-c4183d210ca4e5763394171d3f66f10c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

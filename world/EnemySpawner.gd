@@ -4,8 +4,7 @@ onready var timerWave = $TimerWave
 onready var timerSpawn = $TimerSpawn
 var wavePause = 3
 var wave = "pause"
-var wavesToBoss = 10
-
+export var wavesToBoss = 10
 
 const ASTEROIDS = [
 	preload("res://enemies/Asteroid01.tscn"),
@@ -30,6 +29,7 @@ func _physics_process(_delta):
 		"fighters2": _spawn_fighter2()
 		"gunships": _spawn_gunships()
 		"missiles": _spawn_missiles()
+		"crabships": _spawn_crabships()
 
 func _spawn_asteroid():
 	timerSpawn.start(0.8)
@@ -39,9 +39,9 @@ func _spawn_asteroid():
 	add_child(new)
 
 func _spawn_fighter1():
-	timerSpawn.start(0.6)
+	timerSpawn.start(0.8)
 	var new = preload("res://enemies/Fighter01.tscn").instance()
-	new.global_position = _start_position()
+	new.global_position = _start_position(40)
 	add_child(new)
 
 func _spawn_fighter2():
@@ -62,29 +62,49 @@ func _spawn_missiles():
 	new.global_position = _start_position(20, 30)
 	add_child(new)
 
+func _spawn_crabships():
+	timerSpawn.start(1.4)
+	var new = preload("res://enemies/CrabShip.tscn").instance()
+	new.global_position = _start_position(40, 30)
+	add_child(new)
+
+### get start position
 func _start_position(marginSides = 20, margin_top = 20):
 	var posX = Utils.rng.randi_range(marginSides, Utils.window_width -marginSides)
 	var posY = -margin_top
 	return Vector2(posX, posY)
 
 ########################################################################
+### next wave
 func _on_TimerWave_timeout():
 	MySignals.emit_signal("asteroids_stop")
 	timerSpawn.stop()
-	if Utils.wave >= wavesToBoss:
-		wave = "Boss"
-		MySignals.emit_signal("stop_background")
-	elif wave == "pause":
-		match Utils.rng.randi_range(0, 4):
-			0:_fighter1(10)
-			1: _fighter2(10)
-			2: _asteroids(20)
-			3: _gunships(8)
-			4: _missiles(8)
-		Utils.wave += 1
-	else:
-		wave = "pause"
-		timerWave.start(wavePause)
+	if Utils.wave >= wavesToBoss: _spawn_boss()
+	elif wave == "pause": _spawn_enemies()
+	else: _wave_pause()
+
+### spawn boss
+func _spawn_boss():
+	wave = "Boss"
+	timerWave.stop()
+	MySignals.emit_signal("stop_background")
+	yield(get_tree().create_timer(2), "timeout")
+	_spawn_pirate_frigate()
+
+func _spawn_pirate_frigate():
+	var new = preload("res://enemies/Boss/PirateFighter.tscn").instance()
+	add_child(new)
+
+### spawn enemy
+func _spawn_enemies():
+	match Utils.rng.randi_range(0, 5):
+		0:_fighter1(10)
+		1: _fighter2(10)
+		2: _asteroids(20)
+		3: _gunships(8)
+		4: _missiles(8)
+		5: _crabship(10)
+	Utils.wave += 1
 
 func _fighter1(duration):
 	wave = "fighters1"
@@ -107,3 +127,11 @@ func _missiles(duration):
 	wave = "missiles"
 	timerWave.start(duration)
 
+func _crabship(duration):
+	wave = "crabships"
+	timerWave.start(duration)
+
+### wave pause
+func _wave_pause():
+	wave = "pause"
+	timerWave.start(wavePause)

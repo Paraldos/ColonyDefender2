@@ -28,10 +28,10 @@ texture = ExtResource( 2 )
 [node name="VisibilityNotifier" parent="Sprite" index="0"]
 visible = false
 
-[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hitbox_" index="0"]
+[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hurtbox" index="0"]
 polygon = PoolVector2Array( -31, -14, -13, -18, -13, -28, -6, -32, 6, -32, 13, -28, 13, -18, 31, -14, 31, -6, 17, 0, 17, 27, 8, 32, -8, 32, -17, 27, -17, 0, -31, -6 )
 
-[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hurtbox_" index="0"]
+[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hitbox" index="0"]
 polygon = PoolVector2Array( -31, -14, -13, -18, -13, -28, -6, -32, 6, -32, 13, -28, 13, -18, 31, -14, 31, -6, 17, 0, 17, 27, 8, 32, -8, 32, -17, 27, -17, 0, -31, -6 )
 
 [node name="AttackTimer" type="Timer" parent="." index="3"]

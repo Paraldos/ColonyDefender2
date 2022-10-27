@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://img/Spaceship-Sheet.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform int strength: hint_range(1, 512) = 2;
+
+vec4 blur_size(sampler2D tex,vec2 fragCoord, vec2 pixelSize) {
+    
+    vec4 color = vec4(0.,0.,0.,0.);
+    float strengthFloat = float(strength);	
+
+    vec2 pixel = fragCoord/pixelSize;
+    int x_min = max(int(pixel.x-strengthFloat), 0);
+    int x_max = min(int(pixel.x+strengthFloat), int(1./pixelSize.x));
+    int y_min = max(int(pixel.y-strengthFloat), 0);
+    int y_max = min(int(pixel.y+strengthFloat), int(1./pixelSize.y));
+
+    int count =0;
+
+    // Sum the pixels colors
+    for(int x=x_min; x <= x_max; x++) {
+        for(int y = y_min; y <= y_max; y++) {           
+            color += texture(tex, vec2(float(x), float(y)) * pixelSize);
+            count++;
+        }
+    }
+    
+    // Divide the color by the number of colors you summed up
+    color /= float(count);
+    
+    return color;
+}
+
+void fragment() {	
+    COLOR = blur_size(TEXTURE,UV,TEXTURE_PIXEL_SIZE);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/strength = 2
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="Afterimage" type="Sprite"]
+material = SubResource( 4 )
+texture = ExtResource( 1 )
+hframes = 5
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "start"
+anims/RESET = SubResource( 1 )
+anims/start = SubResource( 2 )

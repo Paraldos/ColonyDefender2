@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://enemies/Asteroid01.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://img/Asteroids-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://enemies/Asteroid.gd" type="Script" id=3]
 
 [node name="Asteroid04" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+hframes = 8
 frame = 4
 
-[node name="CS" parent="Sprite/Hitbox_" index="0"]
-polygon = PoolVector2Array( -15, 4, -15, -4, -6, -10, -1, -10, 5, -4, 5, 13, 1, 16, -5, 16 )
+[node name="CP" type="CollisionPolygon2D" parent="Sprite/Hurtbox" index="0"]
+polygon = PoolVector2Array( -18, -12, -18, -16, -14, -20, -7, -21, 8, -22, 14, -22, 20, -17, 20, -13, 13, -5, 11, 5, 11, 15, 4, 21, -2, 21, -9, 9, -16, -7 )
 
-[node name="CS" parent="Sprite/Hurtbox_" index="0"]
-polygon = PoolVector2Array( -15, -4, -6, -10, -1, -10, 5, -4, 5, 13, 1, 16, -5, 16, -15, 4 )
+[node name="CP2" type="CollisionPolygon2D" parent="Sprite/Hitbox" index="0"]
+polygon = PoolVector2Array( -18, -12, -18, -16, -14, -20, -7, -21, 8, -22, 14, -22, 20, -17, 20, -13, 13, -5, 11, 5, 11, 15, 4, 21, -2, 21, -9, 9, -16, -7 )

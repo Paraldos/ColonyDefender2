@@ -7,9 +7,11 @@ onready var gunController = $GunController
 onready var bombController = $BombController
 onready var laserController = $LaserController
 onready var shieldController = $ShieldController
+onready var warpdrive = $Warpdrive
 onready var sprite = $Sprite
 onready var deathTimer = $DeathTimer
 onready var audioDeath = $AudioDeath
+onready var animHit = $AnimHit
 ### movement
 const ACCELERATION = 1800
 const MAX_SPEED = 400
@@ -20,31 +22,29 @@ var motion = Vector2.ZERO
 var light_tilt = 0.2
 var hard_tilt = 0.8
 ### other
+const EXPLOSION = preload("res://explosions/Explosion05.tscn")
 var megashield = false
+var aktive = true
 
 #################################################
 func _ready():
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	MySignals.connect("megashield_on", self, "_on_megashield_on")
-# warning-ignore:return_value_discarded
+	# warning-ignore:return_value_discarded
 	MySignals.connect("megashield_off", self, "_on_megashield_off")
-
-func _on_megashield_on():
-	megashield = true
-
-func _on_megashield_off():
-	megashield = false
+	# warning-ignore:return_value_discarded
+	MySignals.connect("boss_dead", self, "_on_boss_dead")
+	Utils.player_node = self
 
 #################################################
 func _physics_process(delta):
 	Utils.player_pos = global_position
-	if Utils.player.hp <= 0:
-		_death()
+	if Utils.player.hp <= 0: _death_shacke()
+	###
+	if !aktive: return
 	else:
 		if Input.is_action_just_pressed("ui_selfdestruction"):
-			Utils.player.hp = 0
-			audioDeath.play()
-			deathTimer.start()
+			_on_Hurtbox_hit(Utils.player.hp)
 		_move(delta)
 		_animation()
 		gunController._attack()
@@ -52,12 +52,15 @@ func _physics_process(delta):
 		laserController._megalaser()
 		shieldController._megashield()
 
-##### death
-func _death():
-	var offset = 2
-	sprite.offset.x = Utils.rng.randf_range(-offset, offset)
-	sprite.offset.y = Utils.rng.randf_range(-offset, offset)
+#################################################
+##### megashield
+func _on_megashield_on():
+	megashield = true
 
+func _on_megashield_off():
+	megashield = false
+
+#################################################
 ##### movement
 func _move(delta):
 	_get_input()
@@ -96,26 +99,65 @@ func _animation():
 		anim_stateMachine.travel("Center")
 
 #################################################
-func _on_Hurtbox__hit(dmg):
-	if Utils.player.hp <= 0: return
+### getting hit and player death
+func _on_Hurtbox_hit(dmg):
+	if animHit.is_playing(): return
+	if !aktive: return
 	if megashield: return
 	###
+	animHit.play("start")
 	Utils.player.hp -= dmg
+	Utils._dmg_label(dmg, global_position)
 	MySignals.emit_signal("hp_update")
 	###
 	if Utils.player.hp <= 0:
+		aktive = false
 		audioDeath.play()
 		deathTimer.start()
-
-
-const EXPLOSION = preload("res://explosions/Explosion03.tscn")
 
 func _on_DeathTimer_timeout():
 	var newExplosion = EXPLOSION.instance()
 	newExplosion.global_position = global_position
+	newExplosion.scale = Vector2(0.7, 0.7)
 	get_tree().current_scene.add_child(newExplosion)
 	###
 	Utils._gameover()
 	###
 	queue_free()
 
+func _death_shacke():
+	var offset = 2
+	sprite.offset.x = Utils.rng.randf_range(-offset, offset)
+	sprite.offset.y = Utils.rng.randf_range(-offset, offset)
+
+#################################################
+### boss death
+func _on_boss_dead():
+	aktive = false
+	MySignals.emit_signal("stop_ui")
+	yield(_move_to_startposition(), "completed")
+	yield(get_tree().create_timer(3), "timeout")
+	MySignals.emit_signal("start_background", 0, -0.5)
+	warpdrive._start()
+
+func _move_to_startposition():
+	if global_position.x < Utils.window_width/2 -16:
+		anim_stateMachine.travel("Right")
+	elif global_position.x > Utils.window_width/2 +16:
+		anim_stateMachine.travel("Left")
+	else:
+		anim_stateMachine.travel("Center")
+	##########
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(
+		self,
+		"global_position",
+		Vector2(Utils.window_width/2, 210),
+		1)
+	yield(tween, "finished")
+	##########
+	anim_stateMachine.travel("Center")
+
+func _on_Warpdrive_warp_done():
+	Utils._stage_cleared()
+	queue_free()

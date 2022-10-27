@@ -20,3 +20,7 @@ signal megashield_on()
 signal megashield_off()
 # warning-ignore:unused_signal
 signal stop_background()
+signal start_background(x, y)
+signal boss_dead()
+signal stop_ui()
+signal update_shop_info(dbEntry)

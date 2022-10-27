@@ -1,0 +1,224 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://theme/Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://menu/ShopMenu.gd" type="Script" id=2]
+[ext_resource path="res://theme/mainTheme.tres" type="Theme" id=3]
+[ext_resource path="res://theme/h1.tres" type="Theme" id=4]
+[ext_resource path="res://Shop/ShopInfo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menu/CreditsLabel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Shop/ShopButton.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CR:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CR:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.294118 ) ]
+}
+
+[node name="ShopMenu" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "start"
+anims/RESET = SubResource( 1 )
+anims/start = SubResource( 2 )
+
+[node name="CR" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="MC" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+
+[node name="VC" type="VBoxContainer" parent="MC"]
+margin_right = 480.0
+margin_bottom = 270.0
+custom_constants/separation = 4
+alignment = 1
+
+[node name="C" type="Control" parent="MC/VC"]
+margin_right = 480.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Header" type="Label" parent="MC/VC"]
+margin_top = 19.0
+margin_right = 480.0
+margin_bottom = 41.0
+theme = ExtResource( 4 )
+text = "Cleared!"
+align = 1
+uppercase = true
+
+[node name="C3" type="Control" parent="MC/VC"]
+margin_top = 45.0
+margin_right = 480.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MC/VC"]
+margin_top = 64.0
+margin_right = 480.0
+margin_bottom = 81.0
+alignment = 1
+
+[node name="CreditsLabel" parent="MC/VC/HBoxContainer" instance=ExtResource( 8 )]
+anchor_right = 0.0
+margin_right = 238.0
+size_flags_horizontal = 3
+countUp = true
+
+[node name="BtnNext" parent="MC/VC/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_left = 242.0
+margin_right = 480.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+labelText = "Next Level"
+startFocus = true
+
+[node name="Sep" type="HSeparator" parent="MC/VC"]
+margin_top = 85.0
+margin_right = 480.0
+margin_bottom = 89.0
+
+[node name="HC" type="HBoxContainer" parent="MC/VC"]
+margin_top = 93.0
+margin_right = 480.0
+margin_bottom = 242.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="C" type="Control" parent="MC/VC/HC"]
+margin_right = 23.0
+margin_bottom = 149.0
+size_flags_horizontal = 3
+
+[node name="Buttons" type="VBoxContainer" parent="MC/VC/HC"]
+margin_left = 27.0
+margin_right = 194.0
+margin_bottom = 149.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MC/VC/HC/Buttons"]
+margin_right = 167.0
+margin_bottom = 17.0
+text = "Buy Upgrade"
+align = 1
+uppercase = true
+
+[node name="ShopButton" parent="MC/VC/HC/Buttons" instance=ExtResource( 9 )]
+anchor_right = 0.0
+margin_top = 22.0
+margin_right = 167.0
+margin_bottom = 39.0
+startFocus = true
+dbEntry = "gun_damage"
+
+[node name="BtnGunDmg" parent="MC/VC/HC/Buttons" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 44.0
+margin_right = 167.0
+margin_bottom = 61.0
+labelText = "Gun Damage"
+
+[node name="BtnHpLevel" parent="MC/VC/HC/Buttons" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 66.0
+margin_right = 167.0
+margin_bottom = 83.0
+labelText = "HP Level"
+
+[node name="#Button3" parent="MC/VC/HC/Buttons" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 88.0
+margin_right = 167.0
+margin_bottom = 105.0
+disabled = true
+labelText = "Mega Bombe"
+
+[node name="#Button4" parent="MC/VC/HC/Buttons" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 110.0
+margin_right = 167.0
+margin_bottom = 127.0
+disabled = true
+labelText = "Mega Laser"
+
+[node name="#Button5" parent="MC/VC/HC/Buttons" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_top = 132.0
+margin_right = 167.0
+margin_bottom = 149.0
+disabled = true
+labelText = "Mega Shield"
+
+[node name="C2" type="Control" parent="MC/VC/HC"]
+margin_left = 198.0
+margin_right = 210.0
+margin_bottom = 149.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="ShopInfo" parent="MC/VC/HC" instance=ExtResource( 5 )]
+margin_left = 214.0
+margin_right = 452.0
+margin_bottom = 149.0
+
+[node name="C3" type="Control" parent="MC/VC/HC"]
+margin_left = 456.0
+margin_right = 480.0
+margin_bottom = 149.0
+size_flags_horizontal = 3
+
+[node name="Sep2" type="HSeparator" parent="MC/VC"]
+margin_top = 246.0
+margin_right = 480.0
+margin_bottom = 250.0
+
+[node name="C2" type="Control" parent="MC/VC"]
+margin_top = 254.0
+margin_right = 480.0
+margin_bottom = 270.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="tree_exited" from="." to="." method="_on_ShopMenu_tree_exited"]
+[connection signal="focus_entered" from="MC/VC/HBoxContainer/BtnNext" to="." method="_on_BtnNext_focus_entered"]
+[connection signal="pressed" from="MC/VC/HBoxContainer/BtnNext" to="." method="_on_BtnNext_pressed"]
+[connection signal="focus_entered" from="MC/VC/HC/Buttons/BtnGunDmg" to="." method="_on_BtnGunDmg_focus_entered"]
+[connection signal="pressed" from="MC/VC/HC/Buttons/BtnGunDmg" to="." method="_on_BtnGunDmg_pressed"]
+[connection signal="focus_entered" from="MC/VC/HC/Buttons/BtnHpLevel" to="." method="_on_BtnHpLevel_focus_entered"]
+[connection signal="pressed" from="MC/VC/HC/Buttons/BtnHpLevel" to="." method="_on_BtnHpLevel_pressed"]

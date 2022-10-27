@@ -183,3 +183,5 @@ __meta__ = {
 margin_right = 466.0
 margin_bottom = 256.0
 alignment = 1
+
+[connection signal="tree_exited" from="." to="." method="_on_Menu_tree_exited"]

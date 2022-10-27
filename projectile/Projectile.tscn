@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Tec/Hitbox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://projectile/Projectile.gd" type="Script" id=2]
-[ext_resource path="res://Tec/Hitbox_.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 0.372549, 1, 1, 1, 0 )
@@ -41,9 +41,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Hitbox_" parent="." instance=ExtResource( 3 )]
-collision_layer = 0
-collision_mask = 0
+[node name="Hitbox" parent="." instance=ExtResource( 1 )]
 
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
-[connection signal="area_entered" from="Hitbox_" to="." method="_on_Hitbox__area_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]

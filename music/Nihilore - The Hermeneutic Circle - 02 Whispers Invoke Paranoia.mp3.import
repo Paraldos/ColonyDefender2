@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Nihilore - The Hermeneutic Circle - 02 Whispers Invoke Paranoia.mp3-4ee6af5d6c5da456b392788e4ba5ba27.mp3str"
+
+[deps]
+
+source_file="res://music/Nihilore - The Hermeneutic Circle - 02 Whispers Invoke Paranoia.mp3"
+dest_files=[ "res://.import/Nihilore - The Hermeneutic Circle - 02 Whispers Invoke Paranoia.mp3-4ee6af5d6c5da456b392788e4ba5ba27.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

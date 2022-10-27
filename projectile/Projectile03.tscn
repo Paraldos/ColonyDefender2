@@ -12,8 +12,8 @@ explosion = 1
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
 
-[node name="Hitbox_" parent="." index="3"]
+[node name="Hitbox" parent="." index="3"]
 collision_mask = 8
 
-[node name="CS" type="CollisionShape2D" parent="Hitbox_" index="0"]
+[node name="CS" type="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource( 1 )

@@ -3,11 +3,18 @@ extends Node
 onready var audio = $Audio
 
 const SONGS = [
-	preload("res://music/Laser Quest Loop.wav"),
-	preload("res://music/The Synths Loop.wav"),
+	preload("res://music/Nihilore - Broken Parts - 04 The Water and the Well.mp3"),
+	preload("res://music/Nihilore - Broken Parts - 06 Bush Week.mp3"),
+	preload("res://music/Nihilore - Broken Parts - 07 Dissent.mp3"),
+	preload("res://music/Nihilore - Broken Parts - 10 Walks of Life.mp3"),
+	preload("res://music/Nihilore - Consequences EP - 03 Solipsism.mp3"),
+	preload("res://music/Nihilore - The Hermeneutic Circle - 02 Whispers Invoke Paranoia.mp3"),
+	preload("res://music/Nihilore - Truth and Justification - 05 In the Belly of the Whale.mp3"),
+	#preload(),
 ]
 
 func _ready():
+	return
 	_start_music()
 
 func _on_Audio_finished():

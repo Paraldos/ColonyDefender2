@@ -1,15 +1,15 @@
 extends "res://enemies/Enemy.gd"
 
+const PROJECTILE = preload("res://projectile/Projectile02.tscn")
 onready var rayCast_right = $RayCast_Right
 onready var rayCast_left = $RayCast_Left
 onready var directionTimer = $DirectionTimer
 onready var muzzle = $PositionMuzzle
 var ACCELERATION = 25
 var SPEED_MAX = 75
-var velocity = Vector2(0, 150)
+var velocity = Vector2(0, SPEED_MAX * 1.5)
 var direction = 1
 
-const PROJECTILE = preload("res://projectile/Projectile02.tscn")
 
 ########################################################################
 func _physics_process(_delta):
@@ -27,7 +27,7 @@ func _check_for_wall_collision():
 
 ########################################################################
 func _on_DirectionTimer_timeout():
-	direction = Utils.rng.randi_range(-1, 1)
+	direction *= -1
 
 ########################################################################
 func _on_AttackTimer_timeout():

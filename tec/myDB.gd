@@ -1,10 +1,14 @@
 extends Node
 
 var enemies = {}
+var shop = {}
 
 func _ready():
 	_enemies()
+	_shop()
 
+#################################################
+### enemies
 func _enemies():
 	var file = _load_csv("res://Tec/enemies.csv")
 	var keys = _get_keys(file)
@@ -17,6 +21,21 @@ func _enemies():
 			credits = int(el[keys.credits])
 		}
 
+### shop
+func _shop():
+	var file = _load_csv("res://Tec/shop.csv")
+	var keys = _get_keys(file)
+	file.remove(0)
+	for el in file:
+		shop[el[keys.id]] = {
+			id = el[keys.id],
+			cost = int(el[keys.cost]),
+			description = el[keys.description],
+			max_level = int(el[keys.max_level])
+		}
+
+#################################################
+### helper
 func _load_csv(path):
 	var file = File.new()
 	file.open(path, file.READ)

@@ -21,7 +21,7 @@ script = ExtResource( 8 )
 [node name="Borders" parent="." instance=ExtResource( 7 )]
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 240, 200 )
+position = Vector2( 240, 210 )
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 5 )]
 

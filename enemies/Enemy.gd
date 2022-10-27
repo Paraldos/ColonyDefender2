@@ -2,18 +2,18 @@ extends KinematicBody2D
 
 ########################################################################
 onready var animHit = $AnimHit
-###
 export var explosion = 2
-###
 var hp = 0
 var dmg = 0
 var credits = 0
-###
+var powerups = [
+	preload("res://Powerup/Energy.tscn"),
+	preload("res://Powerup/HP.tscn")
+]
 var exploding = false
 
 func _ready():
 	_get_db_variables()
-
 
 func _get_db_variables():
 	hp = MyDb.enemies[_get_name()].hp
@@ -29,11 +29,13 @@ func _on_VisibilityNotifier_screen_exited():
 	queue_free()
 
 ########################################################################
-func _on_Hitbox__area_entered(area):
+func _on_Hitbox_area_entered(_area):
 	hp -= 1000000
 	_death()
 
-func _on_Hurtbox__hit(dmg):
+func _on_Hurtbox_hit(dmg):
+	if exploding: return
+	Utils._dmg_label(dmg, global_position)
 	animHit.play("hit")
 	hp -= dmg
 	_death()
@@ -43,17 +45,17 @@ func _death():
 	if hp <= 0:
 		exploding = true
 		call_deferred("_powerup")
-		call_deferred("_credits")
+		call_deferred("_coins")
 		_explosion()
 		queue_free()
-
 
 const EXPLOSIONS = [
 	null,
 	preload("res://explosions/Explosion01.tscn"),
 	preload("res://explosions/Explosion02.tscn"),
 	preload("res://explosions/Explosion03.tscn"),
-	preload("res://explosions/Explosion04.tscn")
+	preload("res://explosions/Explosion04.tscn"),
+	preload("res://explosions/Explosion05.tscn"),
 ]
 
 func _explosion():
@@ -61,26 +63,23 @@ func _explosion():
 	new.global_position = global_position
 	get_tree().current_scene.add_child(new)
 
-func _credits():
-	#Utils.player.credits += credits
-	#MySignals.emit_signal("credits_update")
+func _coins():
 	for i in credits:
-		var new = preload("res://Powerup/Credits.tscn").instance()
+		var new = preload("res://Powerup/Coin.tscn").instance()
 		new.move_vector.x = Utils.rng.randf_range(-2, 2)
 		new.move_vector.y = Utils.rng.randf_range(-2, 2)
 		new.global_position = global_position
 		get_tree().current_scene.add_child(new)
 
 func _powerup():
-	match Utils.rng.randi_range(0, 10):
-		0:
-			var new = preload("res://Powerup/Energy.tscn").instance()
-			new.global_position = global_position
-			get_tree().current_scene.add_child(new)
-		1:
-			var new = preload("res://Powerup/HP.tscn").instance()
-			new.global_position = global_position
-			get_tree().current_scene.add_child(new)
+	if Utils.rng.randi_range(1, 10) >= 2:
+		var myNr = Utils.rng.randi_range(0, powerups.size() -1)
+		var new = powerups[myNr].instance()
+		new.global_position = global_position
+		get_tree().current_scene.add_child(new)
+
+
+
 
 
 
