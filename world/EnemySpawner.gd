@@ -4,7 +4,7 @@ onready var timerWave = $TimerWave
 onready var timerSpawn = $TimerSpawn
 var wave = {}
 var waveCounter = 0
-var wavesToBoss = 10
+var wavesToBoss = 0
 
 const FIGHTERS1 = {
 	name = "fighters1",

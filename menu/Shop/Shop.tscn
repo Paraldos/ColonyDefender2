@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menu/Shop/Shop.gd" type="Script" id=1]
-[ext_resource path="res://theme/h1.tres" type="Theme" id=2]
 [ext_resource path="res://theme/Button.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menu/CreditsLabel.tscn" type="PackedScene" id=5]
@@ -15,7 +14,6 @@ expand_margin_left = 1.0
 expand_margin_right = 1.0
 
 [node name="Shop" instance=ExtResource( 4 )]
-layer = 2
 script = ExtResource( 1 )
 aktivate_pause = false
 
@@ -31,39 +29,38 @@ margin_bottom = 202.0
 
 [node name="Header" type="HBoxContainer" parent="C/MC/VC" index="0"]
 margin_right = 330.0
-margin_bottom = 22.0
+margin_bottom = 17.0
 
-[node name="Label" type="Label" parent="C/MC/VC/Header" index="0"]
+[node name="BtnExit" parent="C/MC/VC/Header" index="0" instance=ExtResource( 3 )]
+anchor_right = 0.0
 margin_right = 163.0
-margin_bottom = 22.0
+margin_bottom = 17.0
 size_flags_horizontal = 3
-theme = ExtResource( 2 )
-text = "SHOP"
+labelText = "Exit"
+startFocus = true
 
 [node name="CreditsLabel" parent="C/MC/VC/Header" index="1" instance=ExtResource( 5 )]
 anchor_right = 0.0
 margin_left = 167.0
-margin_top = 2.0
 margin_right = 330.0
-margin_bottom = 19.0
 size_flags_horizontal = 3
 align = 2
 
 [node name="Sep" type="HSeparator" parent="C/MC/VC" index="1"]
-margin_top = 27.0
+margin_top = 22.0
 margin_right = 330.0
-margin_bottom = 31.0
+margin_bottom = 26.0
 
 [node name="Container" type="HBoxContainer" parent="C/MC/VC" index="2"]
-margin_top = 36.0
+margin_top = 31.0
 margin_right = 330.0
-margin_bottom = 171.0
+margin_bottom = 202.0
 size_flags_vertical = 3
 
 [node name="Options" type="VBoxContainer" parent="C/MC/VC/Container" index="0"]
 unique_name_in_owner = true
 margin_right = 159.0
-margin_bottom = 135.0
+margin_bottom = 171.0
 size_flags_horizontal = 3
 
 [node name="#Button" parent="C/MC/VC/Container/Options" index="0" instance=ExtResource( 3 )]
@@ -92,13 +89,13 @@ margin_bottom = 83.0
 [node name="Sep" type="VSeparator" parent="C/MC/VC/Container" index="1"]
 margin_left = 163.0
 margin_right = 167.0
-margin_bottom = 135.0
+margin_bottom = 171.0
 custom_styles/separator = SubResource( 1 )
 
 [node name="SC" type="ScrollContainer" parent="C/MC/VC/Container" index="2"]
 margin_left = 171.0
 margin_right = 330.0
-margin_bottom = 135.0
+margin_bottom = 171.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -129,17 +126,4 @@ margin_right = 159.0
 margin_bottom = 61.0
 autowrap = true
 
-[node name="Sep2" type="HSeparator" parent="C/MC/VC" index="3"]
-margin_top = 176.0
-margin_right = 330.0
-margin_bottom = 180.0
-
-[node name="BtnExit" parent="C/MC/VC" index="4" instance=ExtResource( 3 )]
-anchor_right = 0.0
-margin_top = 185.0
-margin_right = 330.0
-margin_bottom = 202.0
-labelText = "Exit"
-startFocus = true
-
-[connection signal="pressed" from="C/MC/VC/BtnExit" to="." method="_on_BtnExit_pressed"]
+[connection signal="pressed" from="C/MC/VC/Header/BtnExit" to="." method="_on_BtnExit_pressed"]
