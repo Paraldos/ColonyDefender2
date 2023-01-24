@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://theme/h1.tres" type="Theme" id=1]
+[ext_resource path="res://theme/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menu/GameOver/GameOver.gd" type="Script" id=4]
+
+[node name="GameOver" instance=ExtResource( 3 )]
+script = ExtResource( 4 )
+
+[node name="C" parent="." index="2"]
+margin_left = 131.0
+margin_top = 83.0
+margin_right = -131.0
+margin_bottom = -83.0
+
+[node name="VC" parent="C/MC" index="0"]
+margin_right = 194.0
+margin_bottom = 90.0
+
+[node name="Label" type="Label" parent="C/MC/VC" index="0"]
+margin_top = 12.0
+margin_right = 204.0
+margin_bottom = 34.0
+theme = ExtResource( 1 )
+text = "-Game Over-"
+align = 1
+uppercase = true
+
+[node name="BtnAgain" parent="C/MC/VC" index="1" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_top = 39.0
+margin_right = 204.0
+margin_bottom = 56.0
+labelText = "Try Again"
+startFocus = true
+
+[node name="BtnBack" parent="C/MC/VC" index="2" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_top = 61.0
+margin_right = 204.0
+margin_bottom = 78.0
+labelText = "Back to Menu"
+
+[connection signal="pressed" from="C/MC/VC/BtnAgain" to="." method="_on_BtnAgain_pressed"]
+[connection signal="pressed" from="C/MC/VC/BtnBack" to="." method="_on_BtnBack_pressed"]

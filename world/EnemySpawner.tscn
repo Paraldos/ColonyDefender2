@@ -4,7 +4,6 @@
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource( 1 )
-wavesToBoss = 5
 
 [node name="TimerWave" type="Timer" parent="."]
 
@@ -12,3 +11,4 @@ wavesToBoss = 5
 one_shot = true
 
 [connection signal="timeout" from="TimerWave" to="." method="_on_TimerWave_timeout"]
+[connection signal="timeout" from="TimerSpawn" to="." method="_on_TimerSpawn_timeout"]

@@ -38,7 +38,6 @@ const EXPLOSIONS = [
 	preload("res://explosions/Explosion01.tscn"),
 	preload("res://explosions/Explosion02.tscn"),
 	preload("res://explosions/Explosion03.tscn"),
-	preload("res://explosions/Explosion04.tscn")
 ]
 
 func _add_explosion():

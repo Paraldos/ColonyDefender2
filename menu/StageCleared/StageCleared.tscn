@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://theme/h1.tres" type="Theme" id=1]
+[ext_resource path="res://theme/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://audio/CreditCounter.wav" type="AudioStream" id=4]
+[ext_resource path="res://menu/StageCleared/StageCleared.gd" type="Script" id=5]
+
+[node name="Menu" instance=ExtResource( 3 )]
+script = ExtResource( 5 )
+aktivate_pause = false
+
+[node name="AudioCounter" type="AudioStreamPlayer" parent="." index="0"]
+unique_name_in_owner = true
+stream = ExtResource( 4 )
+
+[node name="TimerCounter" type="Timer" parent="." index="1"]
+unique_name_in_owner = true
+wait_time = 0.05
+one_shot = true
+
+[node name="C" parent="." index="4"]
+margin_left = 131.0
+margin_top = 68.0
+margin_right = -131.0
+margin_bottom = -68.0
+
+[node name="VC" parent="C/MC" index="0"]
+margin_right = 194.0
+margin_bottom = 120.0
+
+[node name="Header" type="Label" parent="C/MC/VC" index="0"]
+margin_top = 11.0
+margin_right = 194.0
+margin_bottom = 33.0
+theme = ExtResource( 1 )
+text = "- Stage Cleared -"
+align = 1
+uppercase = true
+
+[node name="Control2" type="Control" parent="C/MC/VC" index="1"]
+margin_top = 38.0
+margin_right = 194.0
+margin_bottom = 38.0
+
+[node name="CreditsLabel" type="Label" parent="C/MC/VC" index="2"]
+unique_name_in_owner = true
+margin_top = 43.0
+margin_right = 194.0
+margin_bottom = 60.0
+text = "Credits: 0"
+align = 1
+
+[node name="Control" type="Control" parent="C/MC/VC" index="3"]
+margin_top = 65.0
+margin_right = 194.0
+margin_bottom = 65.0
+
+[node name="BtnNextStage" parent="C/MC/VC" index="4" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_top = 70.0
+margin_right = 194.0
+margin_bottom = 87.0
+labelText = "Next Stage"
+startFocus = true
+
+[node name="BtnShop" parent="C/MC/VC" index="5" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_top = 92.0
+margin_right = 194.0
+margin_bottom = 109.0
+labelText = "Shop"
+
+[connection signal="timeout" from="TimerCounter" to="." method="_on_TimerCounter_timeout"]
+[connection signal="pressed" from="C/MC/VC/BtnNextStage" to="." method="_on_BtnNextStage_pressed"]
+[connection signal="pressed" from="C/MC/VC/BtnShop" to="." method="_on_BtnShop_pressed"]

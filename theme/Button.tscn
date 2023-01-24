@@ -27,6 +27,7 @@ extra_spacing_top = 4
 font_data = SubResource( 6 )
 
 [node name="#Button" type="Button"]
+modulate = Color( 0.545098, 0.545098, 0.545098, 1 )
 anchor_right = 1.0
 margin_bottom = 20.0
 custom_styles/hover = SubResource( 1 )
@@ -79,4 +80,5 @@ flip_h = true
 
 [connection signal="focus_entered" from="." to="." method="_on_Button_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_Button_focus_exited"]
+[connection signal="gui_input" from="." to="." method="_on_Button_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]

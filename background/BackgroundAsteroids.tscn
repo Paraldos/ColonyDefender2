@@ -5,7 +5,7 @@
 
 [sub_resource type="CanvasItemMaterial" id=1]
 particles_animation = true
-particles_anim_h_frames = 8
+particles_anim_h_frames = 12
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
@@ -31,7 +31,6 @@ anim_offset_random = 1.0
 [node name="ParticlesAsteroids" type="Particles2D"]
 material = SubResource( 1 )
 position = Vector2( 256, -64 )
-emitting = false
 amount = 20
 lifetime = 15.0
 process_material = SubResource( 2 )

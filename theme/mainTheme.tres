@@ -22,5 +22,6 @@ font_data = SubResource( 1 )
 
 [resource]
 default_font = SubResource( 2 )
+Button/colors/font_color = Color( 1, 1, 1, 1 )
 HSeparator/styles/separator = SubResource( 3 )
 VBoxContainer/constants/separation = 5

@@ -143,8 +143,9 @@ tracks/3/keys = {
 "values": [ false ]
 }
 
-[node name="Menu" type="CanvasLayer"]
+[node name="Menu" type="CanvasLayer" groups=["menus"]]
 pause_mode = 2
+layer = 2
 script = ExtResource( 1 )
 
 [node name="Anim" type="AnimationPlayer" parent="."]
@@ -171,17 +172,17 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 7.0
+margin_left = 12.0
 margin_top = 7.0
-margin_right = -7.0
+margin_right = -12.0
 margin_bottom = -7.0
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VC" type="VBoxContainer" parent="C/MC"]
-margin_right = 466.0
+margin_right = 456.0
 margin_bottom = 256.0
 alignment = 1
 
-[connection signal="tree_exited" from="." to="." method="_on_Menu_tree_exited"]
+[connection signal="tree_exiting" from="." to="." method="_on_Menu_tree_exiting"]

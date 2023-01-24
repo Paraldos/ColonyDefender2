@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Colony Defender 2"
-run/main_scene="res://menu/StartMenu.tscn"
+run/main_scene="res://menu/Start/Start.tscn"
 config/icon="res://img/EnergyContainer.png"
 
 [autoload]
@@ -31,6 +31,13 @@ SceneTransition="*res://Tec/SceneTransition.tscn"
 MyDb="*res://Tec/myDB.gd"
 MySignals="*res://Tec/mySignals.gd"
 MyMusic="*res://Tec/myMusic.tscn"
+MyLoot="*res://Tec/myLoot.gd"
+MyPause="*res://Tec/myPause.tscn"
+
+[debug]
+
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
@@ -114,6 +121,11 @@ ui_megashield={
 ui_selfdestruction={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777224,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_leftclick={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

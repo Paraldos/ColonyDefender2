@@ -4,27 +4,36 @@ onready var TR_Left = $HC/TR_Left
 onready var TR_Right = $HC/TR_Right
 onready var label = $HC/Label
 onready var audioClick = $AudioClick
+onready var audioAccept = $AudioAccept
+onready var audioDenied = $AudioDenied
 export var labelText = "???"
 export var startFocus = false
-var start = true
+var clickSound = false
 
 ####################################
 func _ready():
-	# warning-ignore:return_value_discarded
 	MySignals.connect("grab_focus", self, "_on_grab_focus")
 	_frame_visible(false)
-	label.text = labelText
-	_focus()
-	if disabled: modulate = Color("505050")
+	_update()
 
+####################################
 func _on_grab_focus():
-	start = true
+	if !is_inside_tree(): return
+	clickSound = false
 	if startFocus: grab_focus()
-	start = false
+	clickSound = true
+	_update()
 
-func _focus():
-	if startFocus: grab_focus()
-	start = false
+####################################
+func _update():
+	label.text = labelText
+	_btn_color()
+
+func _btn_color():
+	if disabled:
+		modulate = Color("8b8b8b")
+	else:
+		modulate = Color("ffffff")
 
 ####################################
 func _frame_visible(x):
@@ -34,8 +43,7 @@ func _frame_visible(x):
 ####################################
 func _on_Button_focus_entered():
 	_frame_visible(true)
-	if !start:
-		audioClick.play()
+	if clickSound: audioClick.play()
 
 func _on_Button_focus_exited():
 	_frame_visible(false)
@@ -45,6 +53,18 @@ func _on_Button_mouse_entered():
 	grab_focus()
 
 ####################################
+func _denied():
+	audioDenied.play()
+	modulate = Color("ff0000")
+	yield(get_tree().create_timer(0.1), "timeout")
+	_update()
+
+####################################
 func _disable():
 	disabled = true
-	modulate = Color("505050")
+	_update()
+
+####################################
+func _on_Button_gui_input(event):
+	if Input.is_action_just_pressed("ui_leftclick") and disabled:
+		_denied()

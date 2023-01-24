@@ -1,0 +1,3 @@
+id;max_level;cost;description
+gun_level;5;10000;Your base damage is 3. For every level you deal 1 additional damage per shoot.
+health_level;5;10000;Your health base is 50. For every level you gain +10 health, making your more durable during combat.

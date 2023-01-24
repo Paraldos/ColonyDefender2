@@ -10,11 +10,9 @@ const SONGS = [
 	preload("res://music/Nihilore - Consequences EP - 03 Solipsism.mp3"),
 	preload("res://music/Nihilore - The Hermeneutic Circle - 02 Whispers Invoke Paranoia.mp3"),
 	preload("res://music/Nihilore - Truth and Justification - 05 In the Belly of the Whale.mp3"),
-	#preload(),
 ]
 
 func _ready():
-	return
 	_start_music()
 
 func _on_Audio_finished():

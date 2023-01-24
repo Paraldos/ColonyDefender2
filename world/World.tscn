@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://world/WorldEnvironment.tscn" type="PackedScene" id=1]
 [ext_resource path="res://background/Background.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://world/UI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://world/Borders.tscn" type="PackedScene" id=7]
 [ext_resource path="res://world/World.gd" type="Script" id=8]
+[ext_resource path="res://background/BackgroundDebris.tscn" type="PackedScene" id=9]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
@@ -17,6 +18,9 @@ script = ExtResource( 8 )
 [node name="Background" parent="." instance=ExtResource( 2 )]
 
 [node name="ParticlesAsteroids" parent="." instance=ExtResource( 3 )]
+emitting = false
+
+[node name="BackgroundDebris" parent="." instance=ExtResource( 9 )]
 
 [node name="Borders" parent="." instance=ExtResource( 7 )]
 
@@ -26,3 +30,5 @@ position = Vector2( 240, 210 )
 [node name="EnemySpawner" parent="." instance=ExtResource( 5 )]
 
 [node name="UI" parent="." instance=ExtResource( 6 )]
+
+[node name="Menus" type="Node2D" parent="."]

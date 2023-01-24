@@ -121,7 +121,7 @@ func _on_DeathTimer_timeout():
 	newExplosion.scale = Vector2(0.7, 0.7)
 	get_tree().current_scene.add_child(newExplosion)
 	###
-	Utils._gameover()
+	Utils._open_gameover()
 	###
 	queue_free()
 
@@ -159,5 +159,5 @@ func _move_to_startposition():
 	anim_stateMachine.travel("Center")
 
 func _on_Warpdrive_warp_done():
-	Utils._stage_cleared()
+	Utils._open_stage_cleared()
 	queue_free()

@@ -33,11 +33,11 @@ func _on_Hitbox_area_entered(_area):
 	hp -= 1000000
 	_death()
 
-func _on_Hurtbox_hit(dmg):
+func _on_Hurtbox_hit(damage):
 	if exploding: return
-	Utils._dmg_label(dmg, global_position)
+	Utils._dmg_label(damage, global_position)
 	animHit.play("hit")
-	hp -= dmg
+	hp -= damage
 	_death()
 
 func _death():
@@ -54,7 +54,6 @@ const EXPLOSIONS = [
 	preload("res://explosions/Explosion01.tscn"),
 	preload("res://explosions/Explosion02.tscn"),
 	preload("res://explosions/Explosion03.tscn"),
-	preload("res://explosions/Explosion04.tscn"),
 	preload("res://explosions/Explosion05.tscn"),
 ]
 
@@ -65,21 +64,10 @@ func _explosion():
 
 func _coins():
 	for i in credits:
-		var new = preload("res://Powerup/Coin.tscn").instance()
-		new.move_vector.x = Utils.rng.randf_range(-2, 2)
-		new.move_vector.y = Utils.rng.randf_range(-2, 2)
-		new.global_position = global_position
-		get_tree().current_scene.add_child(new)
+		MyLoot._spawn_coins(global_position)
 
 func _powerup():
-	if Utils.rng.randi_range(1, 10) >= 2:
-		var myNr = Utils.rng.randi_range(0, powerups.size() -1)
-		var new = powerups[myNr].instance()
-		new.global_position = global_position
-		get_tree().current_scene.add_child(new)
-
-
-
+	MyLoot._spawn_powerup(global_position)
 
 
 

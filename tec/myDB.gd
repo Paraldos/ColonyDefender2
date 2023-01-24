@@ -23,7 +23,7 @@ func _enemies():
 
 ### shop
 func _shop():
-	var file = _load_csv("res://Tec/shop.csv")
+	var file = _load_csv("res://menu/Shop/shop.csv")
 	var keys = _get_keys(file)
 	file.remove(0)
 	for el in file:

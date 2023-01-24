@@ -5,6 +5,7 @@ onready var gunTimer = $Timer
 onready var gunAudio = $Audio
 onready var anim = $Anim
 var projectileSpeed = -300
+const PROJECTILE = preload("res://projectile/Projectile01.tscn")
 
 ### attack
 func _attack():
@@ -12,16 +13,16 @@ func _attack():
 		gunTimer.start()
 		_attack_audio()
 		anim.play("attack")
-		_instance_projectile()
+		_instance_projectile(-5)
+		_instance_projectile(5)
 
-const PROJECTILE = preload("res://projectile/Projectile01.tscn")
-
-func _instance_projectile():
+func _instance_projectile(offsetX):
 	var new = PROJECTILE.instance()
-	new.position = global_position
+	new.position = global_position + Vector2(offsetX, 0)
 	new.dmg = Utils._get_gun_dmg()
 	new.velocity = Vector2(0, projectileSpeed)
 	get_tree().current_scene.add_child(new)
+
 
 func _attack_audio():
 	gunAudio.pitch_scale = Utils.rng.randf_range(0.90, 1.1)
