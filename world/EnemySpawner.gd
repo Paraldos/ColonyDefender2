@@ -24,6 +24,15 @@ const FIGHTERS2 = {
 	offsetY = 20
 }
 
+const FIGHTERS_PIRATE = {
+	name = "fighters_pirate",
+	waveTime = 10,
+	spawnTimer = 0.6,
+	file = preload("res://enemies/Fighters/Fighter_Pirate.tscn"),
+	offsetX = 20,
+	offsetY = 20
+}
+
 const ASTEROIDS = {
 	name = "asteroids",
 	waveTime = 20,
@@ -92,6 +101,7 @@ const CRABSHIP = {
 const WAVES = [
 	FIGHTERS1,
 	FIGHTERS2,
+	FIGHTERS_PIRATE,
 	ASTEROIDS,
 	DEBRIS,
 	GUNSHIPS,
@@ -143,7 +153,7 @@ func _spawn_boss():
 	MySignals.emit_signal("stop_background")
 	### spawn boss
 	yield(get_tree().create_timer(3), "timeout")
-	var new = preload("res://enemies/Boss/Pirate.tscn").instance()
+	var new = preload("res://enemies/Boss/Pirate_Boss.tscn").instance()
 	add_child(new)
 
 ### spawn enemy

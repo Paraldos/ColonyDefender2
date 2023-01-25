@@ -11,8 +11,9 @@ Asteroid09;10;10;3
 Asteroid10;5;5;2
 Asteroid11;10;10;3
 Asteroid12;10;10;3
-Fighter01;5;5;1
-Fighter02;5;5;1
+Fighter01;5;5;2
+Fighter02;5;5;2
+Fighter_Pirate;5;5;2
 Gunship;15;5;3
 Missile;10;20;3
 Crabship;15;10;3

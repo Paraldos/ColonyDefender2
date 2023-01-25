@@ -1,6 +1,7 @@
 extends Node
 
 onready var audio = $Audio
+var playMusic = false
 
 const SONGS = [
 	preload("res://music/Nihilore - Broken Parts - 04 The Water and the Well.mp3"),
@@ -13,7 +14,7 @@ const SONGS = [
 ]
 
 func _ready():
-	_start_music()
+	if playMusic: _start_music()
 
 func _on_Audio_finished():
 	_start_music()
