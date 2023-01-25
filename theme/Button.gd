@@ -68,3 +68,6 @@ func _disable():
 func _on_Button_gui_input(event):
 	if Input.is_action_just_pressed("ui_leftclick") and disabled:
 		_denied()
+	if Input.is_action_just_pressed("ui_accept") and disabled:
+		_denied()
+

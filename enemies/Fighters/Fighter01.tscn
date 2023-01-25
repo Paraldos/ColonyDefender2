@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://img/fighter1.png" type="Texture" id=2]
+[ext_resource path="res://enemies/Fighters/Fighter.gd" type="Script" id=3]
+[ext_resource path="res://player/Exhaust.tscn" type="PackedScene" id=4]
+
+[node name="Fighter01" instance=ExtResource( 1 )]
+collision_layer = 4
+script = ExtResource( 3 )
+
+[node name="Exhaust" parent="." index="0" instance=ExtResource( 4 )]
+position = Vector2( 0, -12 )
+scale = Vector2( 0.7, -1 )
+
+[node name="DirectionTimer" type="Timer" parent="." index="1"]
+wait_time = 1.5
+autostart = true
+
+[node name="RayCast_Right" type="RayCast2D" parent="." index="2"]
+position = Vector2( 10, 0 )
+enabled = true
+cast_to = Vector2( 20, 0 )
+
+[node name="RayCast_Left" type="RayCast2D" parent="." index="3"]
+position = Vector2( -10, 0 )
+enabled = true
+cast_to = Vector2( -20, 0 )
+
+[node name="AttackTimer" type="Timer" parent="." index="4"]
+autostart = true
+
+[node name="Sprite" parent="." index="5"]
+texture = ExtResource( 2 )
+
+[node name="VisibilityNotifier" parent="Sprite" index="0"]
+visible = false
+
+[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hurtbox" index="0"]
+polygon = PoolVector2Array( -16, -5, -3, -12, 3, -12, 16, -5, 16, -1, 9, -1, 9, 4, 4, 15, -4, 15, -9, 4, -9, -1, -16, -1 )
+
+[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hitbox" index="0"]
+polygon = PoolVector2Array( -16, -5, -3, -12, 3, -12, 16, -5, 16, -1, 9, -1, 9, 4, 4, 15, -4, 15, -9, 4, -9, -1, -16, -1 )
+
+[node name="PositionMuzzle" parent="." index="6"]
+position = Vector2( 0, 19 )
+
+[connection signal="timeout" from="DirectionTimer" to="." method="_on_DirectionTimer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

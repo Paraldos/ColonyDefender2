@@ -12,6 +12,11 @@ func _ready():
 	_clean_up_options()
 	_fill_options()
 
+func _input(event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		_stop()
+
+#################################################
 func _clean_up_options():
 	for item in options.get_children():
 		item.queue_free()

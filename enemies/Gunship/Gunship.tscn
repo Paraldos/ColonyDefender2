@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://enemies/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://img/Gunship.png" type="Texture" id=2]
+[ext_resource path="res://enemies/Gunship/Gunship.gd" type="Script" id=3]
+[ext_resource path="res://player/Exhaust.tscn" type="PackedScene" id=4]
+
+[node name="Gunship" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Exhaust" parent="." index="0" instance=ExtResource( 4 )]
+position = Vector2( -3.64645, -32.2652 )
+scale = Vector2( 0.6, -1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Exhaust2" parent="." index="1" instance=ExtResource( 4 )]
+position = Vector2( 3.68979, -32.2652 )
+scale = Vector2( 0.6, -1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource( 2 )
+
+[node name="VisibilityNotifier" parent="Sprite" index="0"]
+visible = false
+
+[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hurtbox" index="0"]
+polygon = PoolVector2Array( -31, -14, -13, -18, -13, -28, -6, -32, 6, -32, 13, -28, 13, -18, 31, -14, 31, -6, 17, 0, 17, 27, 8, 32, -8, 32, -17, 27, -17, 0, -31, -6 )
+
+[node name="CS" type="CollisionPolygon2D" parent="Sprite/Hitbox" index="0"]
+polygon = PoolVector2Array( -31, -14, -13, -18, -13, -28, -6, -32, 6, -32, 13, -28, 13, -18, 31, -14, 31, -6, 17, 0, 17, 27, 8, 32, -8, 32, -17, 27, -17, 0, -31, -6 )
+
+[node name="AttackTimer" type="Timer" parent="." index="3"]
+wait_time = 0.7
+autostart = true
+
+[node name="PositionMuzzle" parent="." index="4"]
+position = Vector2( 0, -4.625 )
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

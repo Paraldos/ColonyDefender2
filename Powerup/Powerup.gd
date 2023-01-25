@@ -12,7 +12,7 @@ var default_Y_speed = 1.0
 
 #################################################
 func _ready():
-	magnet_shape.shape.radius = Utils.player.magnet_distance
+	magnet_shape.shape.radius = Utils.player.magnet_distance + (10 * Utils.player.magnet_level)
 
 #################################################
 func _physics_process(_delta):

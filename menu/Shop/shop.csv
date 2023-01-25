@@ -1,3 +1,5 @@
 id;max_level;cost;description
 gun_level;5;10000;Your base damage is 3. For every level you deal 1 additional damage per shoot.
-health_level;5;10000;Your health base is 50. For every level you gain +10 health, making your more durable during combat.
+hp_level;5;10000;Your HP (Health Points) base is 50. For every level you gain +10 HP, making your more durable during combat.
+magnet_level;5;5000;Every level increase the reach of the magnetic field, which pulls powerups and credits towards you.
+mega_bombe;1;10000;Activates Megabombe

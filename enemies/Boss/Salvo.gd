@@ -1,7 +1,7 @@
 extends Position2D
 
 #################################################
-const PROJECTILE = preload("res://projectile/Projectile03.tscn")
+const PROJECTILE = preload("res://enemies/Gunship/Projectile.tscn")
 onready var positionDirection = $PositionDirection
 onready var anim = $Anim
 export var bullets_per_attack = 7

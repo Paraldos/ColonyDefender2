@@ -5,7 +5,7 @@ onready var gunTimer = $Timer
 onready var gunAudio = $Audio
 onready var anim = $Anim
 var projectileSpeed = -300
-const PROJECTILE = preload("res://projectile/Projectile01.tscn")
+const PROJECTILE = preload("res://player/Projectile.tscn")
 
 ### attack
 func _attack():

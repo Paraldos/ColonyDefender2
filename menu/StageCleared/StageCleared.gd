@@ -3,6 +3,7 @@ extends "res://menu/Menu.gd"
 onready var creditsLabel = $"%CreditsLabel"
 onready var audioCounter = $"%AudioCounter"
 onready var timerCounter = $"%TimerCounter"
+var stage_credits = 0
 var credits_counter = 0
 
 #################################################
@@ -11,6 +12,7 @@ func _ready():
 
 #################################################
 func _count_credits():
+	stage_credits = Utils.player.credits
 	yield(get_tree().create_timer(0.5), "timeout")
 	timerCounter.start()
 
@@ -24,10 +26,13 @@ func _on_TimerCounter_timeout():
 	timerCounter.start()
 
 func _update_credits_counter():
-	var rest = Utils.player.credits - credits_counter
-	if rest == 0: return 0
-	if rest <= 10: return 1
+	var rest = stage_credits - credits_counter
+	if rest <= 0: return 0
+	if rest <= 5: return 1
+	if rest <= 10: return 2
+	if rest <= 50: return 5
 	if rest <= 100: return 10
+	if rest <= 500: return 50
 	if rest <= 1000: return 100
 	return 1000
 

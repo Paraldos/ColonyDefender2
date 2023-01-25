@@ -5,16 +5,19 @@ var rng = RandomNumberGenerator.new()
 var window_width = 480
 var window_height = 270
 var newPlayer = {
-	credits = 0,
-	hp = 50,
+	credits = 50000,
+	hp = 0,
 	energy_max = 4,
-	energy = 4,
+	energy = 0,
+	magnet_distance = 50,
+	### megaweapons
 	megabomb_dmg = 40,
 	megalaser_dmg = 20,
-	magnet_distance = 100,
 	### upgrades
 	gun_level = 0,
-	health_level = 0,
+	hp_level = 0,
+	magnet_level = 0,
+	mega_bombe = 0,
 }
 var oldPlayer = {}
 var player = {}
@@ -26,7 +29,7 @@ func _get_gun_dmg():
 	return 3 + Utils.player.gun_level
 
 func _get_hp_max():
-	return 50 + (player.health_level * 10)
+	return 50 + (player.hp_level * 10)
 
 #################################################
 func _enter_tree():
