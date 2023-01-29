@@ -97,6 +97,7 @@ tracks/3/keys = {
 }
 
 [node name="Explosion02" type="Sprite"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
 texture = ExtResource( 2 )
 hframes = 10
 script = ExtResource( 1 )
