@@ -28,11 +28,8 @@ var aktive = true
 
 #################################################
 func _ready():
-	# warning-ignore:return_value_discarded
 	MySignals.connect("megashield_on", self, "_on_megashield_on")
-	# warning-ignore:return_value_discarded
 	MySignals.connect("megashield_off", self, "_on_megashield_off")
-	# warning-ignore:return_value_discarded
 	MySignals.connect("boss_dead", self, "_on_boss_dead")
 	Utils.player_node = self
 

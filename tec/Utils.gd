@@ -17,7 +17,7 @@ var newPlayer = {
 	gun_level = 0,
 	hp_level = 0,
 	magnet_level = 0,
-	mega_bombe = 0,
+	mega_bombe = 1,
 }
 var oldPlayer = {}
 var player = {}

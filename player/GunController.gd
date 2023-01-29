@@ -23,7 +23,6 @@ func _instance_projectile(offsetX):
 	new.velocity = Vector2(0, projectileSpeed)
 	get_tree().current_scene.add_child(new)
 
-
 func _attack_audio():
 	gunAudio.pitch_scale = Utils.rng.randf_range(0.90, 1.1)
 	gunAudio.play()

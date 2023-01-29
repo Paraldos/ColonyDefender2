@@ -27,7 +27,7 @@ const FIGHTERS2 = {
 const FIGHTERS_PIRATE = {
 	name = "fighters_pirate",
 	waveTime = 10,
-	spawnTimer = 0.6,
+	spawnTimer = 0.9,
 	file = preload("res://enemies/Fighters/Fighter_Pirate.tscn"),
 	offsetX = 20,
 	offsetY = 20
@@ -50,6 +50,7 @@ const ASTEROIDS = {
 		preload("res://enemies/Asteroids/Asteroid10.tscn"),
 		preload("res://enemies/Asteroids/Asteroid11.tscn"),
 		preload("res://enemies/Asteroids/Asteroid12.tscn"),
+		preload("res://enemies/Asteroids/ExplosiveAsteroid.tscn")
 	],
 	offsetX = 20,
 	offsetY = 20

@@ -1,7 +1,7 @@
 extends Node
 
 onready var audio = $Audio
-var playMusic = false
+var playMusic = true
 
 const SONGS = [
 	preload("res://music/Nihilore - Broken Parts - 04 The Water and the Well.mp3"),

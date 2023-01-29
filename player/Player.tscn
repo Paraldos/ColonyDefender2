@@ -659,8 +659,8 @@ anims/RESET = SubResource( 29 )
 anims/attack = SubResource( 30 )
 
 [node name="Sprite" type="Sprite" parent="GunController"]
-modulate = Color( 1.2, 1.2, 1.2, 1 )
-self_modulate = Color( 1, 0.843137, 0, 1 )
+unique_name_in_owner = true
+modulate = Color( 0.505882, 0.831373, 0.980392, 1 )
 position = Vector2( 0, 6 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 12 )

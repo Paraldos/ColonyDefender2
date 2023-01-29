@@ -4,7 +4,7 @@
 [ext_resource path="res://player/Exhaust.tscn" type="PackedScene" id=2]
 [ext_resource path="res://audio/missile.wav" type="AudioStream" id=3]
 [ext_resource path="res://enemies/Missiles/Missile.gd" type="Script" id=4]
-[ext_resource path="res://img/Missile.png" type="Texture" id=5]
+[ext_resource path="res://img/Missile2.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -127,7 +127,7 @@ tracks/4/keys = {
 script = ExtResource( 4 )
 
 [node name="Exhaust" parent="." index="0" instance=ExtResource( 2 )]
-position = Vector2( 0, -29 )
+position = Vector2( 0, -21 )
 scale = Vector2( 1, -1 )
 
 [node name="Sprite" parent="." index="1"]
@@ -136,17 +136,14 @@ texture = ExtResource( 5 )
 [node name="VisibilityNotifier" parent="Sprite" index="0"]
 visible = false
 
-[node name="Hitbox_" parent="Sprite" index="1"]
-visible = false
-
-[node name="Hurtbox_" parent="Sprite" index="2"]
-visible = false
-
 [node name="CS" type="CollisionPolygon2D" parent="Sprite/Hurtbox" index="0"]
-polygon = PoolVector2Array( -8, -27, -4, -17, -4, 24, -1, 29, 1, 29, 4, 24, 4, -17, 8, -27, 7, -28, -7, -28 )
+polygon = PoolVector2Array( -5, -17, -3, -11, -3, 17, 0, 22, 3, 17, 3, -11, 5, -17, 5, -21, -5, -21 )
+
+[node name="Hitbox" parent="Sprite" index="2"]
+visible = false
 
 [node name="CS" type="CollisionPolygon2D" parent="Sprite/Hitbox" index="0"]
-polygon = PoolVector2Array( -8, -27, -4, -17, -4, 24, -1, 29, 1, 29, 4, 24, 4, -17, 8, -27, 7, -28, -7, -28 )
+polygon = PoolVector2Array( -5, -17, -3, -11, -3, 17, 0, 22, 3, 17, 3, -11, 5, -17, 5, -21, -5, -21 )
 
 [node name="AnimAttack" type="AnimationPlayer" parent="." index="2"]
 root_node = NodePath("../Line")

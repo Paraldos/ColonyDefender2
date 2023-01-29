@@ -1,6 +1,6 @@
 extends "res://enemies/Enemy.gd"
 
-var velocity = Vector2(0, 500)
+var velocity = Vector2(0, 800)
 var move = false
 onready var hitbox = $Sprite/Hitbox
 onready var audio = $Audio

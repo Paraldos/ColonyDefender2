@@ -11,17 +11,11 @@ position = Vector2( -0.708706, -15 )
 [node name="Sprite" parent="." index="5"]
 texture = ExtResource( 2 )
 
-[node name="Hurtbox" parent="Sprite" index="1"]
-visible = false
-
 [node name="CS" parent="Sprite/Hurtbox" index="0"]
-polygon = PoolVector2Array( -22, 9, -22, 2, -9, -1, -9, -16, -3, -21, 3, -21, 9, -16, 9, -1, 22, 2, 22, 9, 19, 11, 9, 11, 7, 14, 4, 14, 4, 19, 2, 21, -2, 21, -4, 19, -4, 14, -7, 14, -9, 11, -19, 11 )
-
-[node name="Hitbox" parent="Sprite" index="2"]
-visible = false
+polygon = PoolVector2Array( -23, 7, -23, 0, -8, -3, -10, -18, -3, -21, 3, -21, 10, -18, 8, -3, 23, 0, 23, 7, 21, 9, 7, 9, 7, 12, 4, 13, 4, 17, 1, 22, -1, 22, -4, 17, -4, 13, -7, 12, -7, 9, -21, 9 )
 
 [node name="CS" parent="Sprite/Hitbox" index="0"]
-polygon = PoolVector2Array( -22, 2, -9, -1, -9, -16, -3, -21, 3, -21, 9, -16, 9, -1, 22, 2, 22, 9, 19, 11, 9, 11, 7, 14, 4, 14, 4, 19, 2, 21, -2, 21, -4, 19, -4, 14, -7, 14, -9, 11, -19, 11, -22, 9 )
+polygon = PoolVector2Array( -23, 0, -8, -3, -10, -18, -3, -21, 3, -21, 10, -18, 8, -3, 23, 0, 23, 7, 21, 9, 7, 9, 7, 12, 4, 13, 4, 17, 1, 22, -1, 22, -4, 17, -4, 13, -7, 12, -7, 9, -21, 9, -23, 7 )
 
 [node name="PositionMuzzle" parent="." index="6"]
 position = Vector2( -0.530331, 16.4215 )

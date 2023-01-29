@@ -11,10 +11,11 @@ Asteroid09;10;10;3
 Asteroid10;5;5;2
 Asteroid11;10;10;3
 Asteroid12;10;10;3
+ExplosiveAsteroid;5;10;4
 Fighter01;5;5;2
 Fighter02;5;5;2
-Fighter_Pirate;5;5;2
-Gunship;15;5;3
+Fighter_Pirate;10;5;3
+Gunship;30;5;3
 Missile;10;20;3
 Crabship;15;10;3
 Debris01;20;15;4

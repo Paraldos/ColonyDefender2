@@ -1,7 +1,7 @@
 extends Position2D
 
 #################################################
-const PROJECTILE = preload("res://projectile/Projectile04.tscn")
+const PROJECTILE = preload("res://enemies/Boss/PulseProjectile.tscn")
 onready var positionDirection = $PositionDirection
 onready var audio = $Audio
 onready var anim = $Anim

@@ -16,7 +16,7 @@ func _on_AttackTimer_timeout():
 	muzzle.look_at(Utils.player_pos)
 	animMuzzle.play("attack")
 	var dir = muzzle.global_position - muzzleDirection.global_position
-	_instance_projectile(dir * 150)
+	_instance_projectile(dir * 200)
 
 func _attack_audio():
 	audio.pitch_scale = Utils.rng.randf_range(0.80, 1.2)
