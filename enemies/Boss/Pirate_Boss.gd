@@ -88,7 +88,7 @@ func _on_Hitbox_area_entered(_area):
 
 func _death():
 	if hp > 0: return
-	MySignals.emit_signal("boss_dead")
+	MySignals.emit_signal("end_stage")
 	_disable_everything()
 	_mini_explosions()
 	yield(_move_to_center_of_screen(), "completed")
@@ -115,12 +115,6 @@ func _on_DeathTimer_timeout():
 	new.scale = Vector2(1.3, 1.3)
 	get_tree().current_scene.add_child(new)
 
-### big explosion
-func _big_explosion():
-	var new = BIG_EXPLOSION.instance()
-	new.global_position = global_position
-	get_tree().current_scene.add_child(new)
-
 ### move to center
 func _move_to_center_of_screen():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
@@ -131,3 +125,9 @@ func _move_to_center_of_screen():
 		2)
 	yield(tween, "finished")
 	yield(get_tree().create_timer(0.5), "timeout")
+
+### big explosion
+func _big_explosion():
+	var new = BIG_EXPLOSION.instance()
+	new.global_position = global_position
+	get_tree().current_scene.add_child(new)

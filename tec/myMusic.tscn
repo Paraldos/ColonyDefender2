@@ -5,6 +5,7 @@
 [node name="myMusic" type="Node"]
 pause_mode = 2
 script = ExtResource( 1 )
+playMusic = false
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 autoplay = true

@@ -2,39 +2,33 @@ extends Node2D
 
 onready var timerWave = $TimerWave
 onready var timerSpawn = $TimerSpawn
-var wave = {}
-var waveCounter = 0
-var wavesToBoss = 5
-
+var cWave = {}
 const FIGHTERS1 = {
-	name = "fighters1",
+	type = "enemy",
 	waveTime = 10,
 	spawnTimer = 0.8,
-	file = preload("res://enemies/Fighters/Fighter01.tscn"),
+	file = [preload("res://enemies/Fighters/Fighter01.tscn")],
 	offsetX = 40,
-	offsetY = 30
+	offsetY = 30,
 }
-
 const FIGHTERS2 = {
-	name = "fighters2",
+	type = "enemy",
 	waveTime = 10,
 	spawnTimer = 0.6,
-	file = preload("res://enemies/Fighters/Fighter02.tscn"),
+	file = [preload("res://enemies/Fighters/Fighter02.tscn")],
 	offsetX = 20,
-	offsetY = 20
+	offsetY = 20,
 }
-
-const FIGHTERS_PIRATE = {
-	name = "fighters_pirate",
+const PIRATE_FIGHTER = {
+	type = "enemy",
 	waveTime = 10,
 	spawnTimer = 0.9,
-	file = preload("res://enemies/Fighters/Fighter_Pirate.tscn"),
+	file = [preload("res://enemies/Fighters/Pirate_Fighter.tscn")],
 	offsetX = 20,
-	offsetY = 20
+	offsetY = 20,
 }
-
 const ASTEROIDS = {
-	name = "asteroids",
+	type = "enemy",
 	waveTime = 20,
 	spawnTimer = 0.8,
 	file = [
@@ -53,11 +47,10 @@ const ASTEROIDS = {
 		preload("res://enemies/Asteroids/ExplosiveAsteroid.tscn")
 	],
 	offsetX = 20,
-	offsetY = 20
+	offsetY = 20,
 }
-
 const DEBRIS = {
-	name = "debris",
+	type = "enemy",
 	waveTime = 20,
 	spawnTimer = 0.8,
 	file = [
@@ -69,45 +62,42 @@ const DEBRIS = {
 		preload("res://enemies/Debris/Debris06.tscn"),
 	],
 	offsetX = 20,
-	offsetY = 20
+	offsetY = 20,
 }
-
 const GUNSHIPS = {
-	name = "gunships",
+	type = "enemy",
 	waveTime = 8,
 	spawnTimer = 1.2,
-	file = preload("res://enemies/Gunship/Gunship.tscn"),
+	file = [preload("res://enemies/Gunship/Gunship.tscn")],
 	offsetX = 40,
-	offsetY = 30
+	offsetY = 30,
 }
-
 const MISSILES = {
-	name = "missiles",
+	type = "enemy",
 	waveTime = 8,
 	spawnTimer = 0.5,
-	file = preload("res://enemies/Missiles/Missile.tscn"),
+	file = [preload("res://enemies/Missiles/Missile.tscn")],
 	offsetX = 20,
-	offsetY = 30
+	offsetY = 30,
 }
-
 const CRABSHIP = {
-	name = "crabships",
+	type = "enemy",
 	waveTime = 10,
 	spawnTimer = 1.4,
-	file = preload("res://enemies/Crabship/CrabShip.tscn"),
+	file = [preload("res://enemies/Crabship/CrabShip.tscn")],
 	offsetX = 40,
-	offsetY = 30
+	offsetY = 30,
 }
-
-const WAVES = [
-	FIGHTERS1,
-	FIGHTERS2,
-	FIGHTERS_PIRATE,
-	ASTEROIDS,
-	DEBRIS,
-	GUNSHIPS,
-	MISSILES,
-	CRABSHIP
+const PIRATE_BOSS = {
+	spawnTimer = 3,
+	type = "boss",
+	file = preload("res://enemies/Boss/Pirate_Boss.tscn"),
+}
+const MISSION = [
+	{type = "dialog", timeline="HelloWorld", spawnTimer = 0},
+	PIRATE_FIGHTER,
+	PIRATE_FIGHTER,
+	PIRATE_BOSS,
 ]
 
 ########################################################################
@@ -117,56 +107,67 @@ func _ready():
 ########################################################################
 ### spawn during wave
 func _on_TimerSpawn_timeout():
-	timerSpawn.start(wave.spawnTimer)
-	var new = _get_file().instance()
-	new.global_position = _start_position()
+	match cWave.type:
+		"enemy": _spawn_enemy()
+		"boss": _spawn_boss()
+		"dialog": _spawn_dialog()
+
+### spawn dialog
+func _spawn_dialog():
+	var new_dialog = Dialogic.start(cWave.timeline)
+	add_child(new_dialog)
+	new_dialog.connect("timeline_end", self, "_on_timeline_end")
+
+func _on_timeline_end(_timeline):
+	yield(get_tree().create_timer(3), "timeout")
+	_next_wave()
+
+### spawn boss
+func _spawn_boss():
+	#yield(get_tree().create_timer(3), "timeout")
+	var new = cWave.file.instance()
 	add_child(new)
 
-func _get_file():
-	if(typeof(wave.file) == 19):
-		return wave.file[Utils.rng.randi_range(0, wave.file.size() -1)]
-	else:
-		return wave.file
+### spawn enemy
+func _spawn_enemy():
+	timerSpawn.start(cWave.spawnTimer)
+	var new = cWave.file[Utils.rng.randi_range(0, cWave.file.size() -1)].instance()
+	new.global_position = _get_start_position()
+	add_child(new)
 
-func _start_position():
-	var posX = Utils.rng.randi_range(wave.offsetX, Utils.window_width -wave.offsetX)
-	var posY = -wave.offsetY
+func _get_start_position():
+	var posX = Utils.rng.randi_range(cWave.offsetX, Utils.window_width -cWave.offsetX)
+	var posY = -cWave.offsetY
 	return Vector2(posX, posY)
 
 ########################################################################
 ### next wave
-func _on_TimerWave_timeout():
-	_stop_old_wave()
-	if waveCounter >= wavesToBoss: 
-		_spawn_boss()
-	else: 
-		_next_wave()
+func _on_TimerWave_timeout(): _next_wave()
 
-### stop old wave
+func _next_wave():
+	if MISSION.size() <= 0:
+		MySignals.emit_signal("end_stage")
+	else:
+		_stop_old_wave()
+		_select_next_wave()
+		_start_next_wave()
+		_start_wave_background()
+
 func _stop_old_wave():
 	timerSpawn.stop()
 	MySignals.emit_signal("asteroids_stop")
 	MySignals.emit_signal("debris_stop")
 
-### spawn boss
-func _spawn_boss():
-	timerWave.stop()
-	MySignals.emit_signal("stop_background")
-	### spawn boss
-	yield(get_tree().create_timer(3), "timeout")
-	var new = preload("res://enemies/Boss/Pirate_Boss.tscn").instance()
-	add_child(new)
+func _select_next_wave():
+	cWave = MISSION.pop_front()
 
-### spawn enemy
-func _next_wave():
-	### start wave
-	wave = WAVES[Utils.rng.randi_range(0, WAVES.size()-1)]
-	timerWave.start(wave.waveTime)
-	timerSpawn.start(wave.spawnTimer)
-	### start background if needed
-	if wave.name == "asteroids": MySignals.emit_signal("asteroids_start")
-	if wave.name == "debris": MySignals.emit_signal("debris_start")
-	### wave counter +1
-	waveCounter += 1
+func _start_next_wave():
+	timerSpawn.start(cWave.spawnTimer)
+	if cWave.type == "enemy":
+		timerWave.start(cWave.waveTime)
+
+func _start_wave_background():
+	if cWave == ASTEROIDS: MySignals.emit_signal("asteroids_start")
+	if cWave == DEBRIS: MySignals.emit_signal("debris_start")
 
 

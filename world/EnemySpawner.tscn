@@ -6,6 +6,7 @@
 script = ExtResource( 1 )
 
 [node name="TimerWave" type="Timer" parent="."]
+one_shot = true
 
 [node name="TimerSpawn" type="Timer" parent="."]
 one_shot = true

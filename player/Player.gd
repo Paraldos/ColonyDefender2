@@ -30,7 +30,7 @@ var aktive = true
 func _ready():
 	MySignals.connect("megashield_on", self, "_on_megashield_on")
 	MySignals.connect("megashield_off", self, "_on_megashield_off")
-	MySignals.connect("boss_dead", self, "_on_boss_dead")
+	MySignals.connect("end_stage", self, "_on_end_stage")
 	Utils.player_node = self
 
 #################################################
@@ -128,8 +128,8 @@ func _death_shacke():
 	sprite.offset.y = Utils.rng.randf_range(-offset, offset)
 
 #################################################
-### boss death
-func _on_boss_dead():
+### leave level
+func _on_end_stage():
 	aktive = false
 	MySignals.emit_signal("stop_ui")
 	yield(_move_to_startposition(), "completed")

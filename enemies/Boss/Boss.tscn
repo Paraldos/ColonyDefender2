@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="Boss" type="Node2D"]
+[node name="Boss" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="BossUI" parent="." instance=ExtResource( 1 )]
