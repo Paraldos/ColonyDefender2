@@ -3,7 +3,7 @@ extends "res://menu/Menu.gd"
 ########################################################################
 func _on_BtnNew_pressed():
 	Utils._new_game()
-	Utils._open_world()
+	Utils._open_home()
 
 func _on_BtnCredits_pressed():
 	Utils._open_credits()

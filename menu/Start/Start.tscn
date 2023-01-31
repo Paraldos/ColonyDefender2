@@ -12,6 +12,7 @@ script = ExtResource( 2 )
 aktivate_pause = false
 
 [node name="Background" parent="." index="0" instance=ExtResource( 1 )]
+SPEED = Vector2( 0.2, -0.5 )
 
 [node name="C" parent="." index="3"]
 anchor_left = 0.5
@@ -19,40 +20,48 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -119.0
-margin_top = -13.0
+margin_top = -17.0
 margin_right = 119.0
-margin_bottom = 89.0
+margin_bottom = 93.0
 
 [node name="VC" parent="C/MC" index="0"]
 margin_right = 214.0
-margin_bottom = 88.0
+margin_bottom = 96.0
 
 [node name="BtnNew" parent="C/MC/VC" index="0" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 13.0
+margin_top = 6.0
 margin_right = 214.0
-margin_bottom = 30.0
+margin_bottom = 23.0
 labelText = "New Game"
 startFocus = true
 
-[node name="BtnCredits" parent="C/MC/VC" index="1" instance=ExtResource( 4 )]
+[node name="BtnLoad" parent="C/MC/VC" index="1" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 35.0
+margin_top = 28.0
 margin_right = 214.0
-margin_bottom = 52.0
+margin_bottom = 45.0
+disabled = true
+labelText = "Load Game"
+
+[node name="BtnCredits" parent="C/MC/VC" index="2" instance=ExtResource( 4 )]
+anchor_right = 0.0
+margin_top = 50.0
+margin_right = 214.0
+margin_bottom = 67.0
 labelText = "Credits"
 
-[node name="BtnQuit" parent="C/MC/VC" index="2" instance=ExtResource( 4 )]
+[node name="BtnQuit" parent="C/MC/VC" index="3" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 57.0
+margin_top = 72.0
 margin_right = 214.0
-margin_bottom = 74.0
+margin_bottom = 89.0
 labelText = "Quit"
 
 [node name="Logo" type="TextureRect" parent="." index="4"]
 anchor_right = 1.0
-margin_top = 56.0
-margin_bottom = 100.0
+margin_top = 40.0
+margin_bottom = 84.0
 texture = ExtResource( 3 )
 stretch_mode = 4
 

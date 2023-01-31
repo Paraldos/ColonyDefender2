@@ -57,21 +57,13 @@ margin_right = 194.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 0, 10 )
 
-[node name="BtnNextStage" parent="C/MC/VC" index="4" instance=ExtResource( 2 )]
+[node name="BtnHome" parent="C/MC/VC" index="4" instance=ExtResource( 2 )]
 anchor_right = 0.0
 margin_top = 75.0
 margin_right = 194.0
 margin_bottom = 92.0
-labelText = "Next Stage"
+labelText = "Home"
 startFocus = true
 
-[node name="BtnShop" parent="C/MC/VC" index="5" instance=ExtResource( 2 )]
-anchor_right = 0.0
-margin_top = 97.0
-margin_right = 194.0
-margin_bottom = 114.0
-labelText = "Shop"
-
 [connection signal="timeout" from="TimerCounter" to="." method="_on_TimerCounter_timeout"]
-[connection signal="pressed" from="C/MC/VC/BtnNextStage" to="." method="_on_BtnNextStage_pressed"]
-[connection signal="pressed" from="C/MC/VC/BtnShop" to="." method="_on_BtnShop_pressed"]
+[connection signal="pressed" from="C/MC/VC/BtnHome" to="." method="_on_BtnHome_pressed"]

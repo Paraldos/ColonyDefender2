@@ -60,12 +60,12 @@ margin_top = 109.0
 margin_right = 230.0
 margin_bottom = 113.0
 
-[node name="BtnBack" parent="C/MC/VC" index="6" instance=ExtResource( 3 )]
+[node name="BtnReturn" parent="C/MC/VC" index="6" instance=ExtResource( 3 )]
 anchor_right = 0.0
 margin_top = 118.0
 margin_right = 230.0
 margin_bottom = 135.0
-labelText = "Back"
+labelText = "Return"
 startFocus = true
 
-[connection signal="pressed" from="C/MC/VC/BtnBack" to="." method="_on_BtnBack_pressed"]
+[connection signal="pressed" from="C/MC/VC/BtnReturn" to="." method="_on_BtnReturn_pressed"]

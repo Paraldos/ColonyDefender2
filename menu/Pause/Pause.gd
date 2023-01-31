@@ -10,4 +10,5 @@ func _on_BtnReturn_pressed():
 	_stop()
 
 func _on_BtnQuit_pressed():
-	Utils._open_start()
+	Utils._abort_mission()
+	Utils._open_home()

@@ -18,6 +18,8 @@ var newPlayer = {
 	hp_level = 0,
 	magnet_level = 0,
 	mega_bombe = 1,
+	mega_laser = 0,
+	mega_shield = 0,
 }
 var oldPlayer = {}
 var player = {}
@@ -38,12 +40,15 @@ func _enter_tree():
 #################################################
 func _new_game():
 	player = newPlayer.duplicate()
-	_next_stage()
+	_start_mission()
 
-func _next_stage():
+func _start_mission():
 	oldPlayer = player.duplicate()
 	player.hp = _get_hp_max()
 	player.energy = player.energy_max
+
+func _abort_mission():
+	player = oldPlayer.duplicate()
 
 #################################################
 # Helper
@@ -58,8 +63,15 @@ func _id_to_label(id):
 
 #################################################
 # menus and new scenes
+func _open_missions():
+	var new = preload("res://menu/Missions/Missions.tscn").instance()
+	get_tree().current_scene.add_child(new)
+
+func _open_home():
+	SceneTransition.change_scene("res://menu/HomeBase/HomeBase.tscn")
+
 func _open_world():
-	SceneTransition.change_scene("res://world/World.tscn")
+	SceneTransition.change_scene("res://stages/template/Stage.tscn")
 
 func _open_start():
 	SceneTransition.change_scene("res://menu/Start/Start.tscn")

@@ -28,9 +28,10 @@ color = Color( 0.360784, 0.356863, 0.356863, 1 )
 anim_offset = 1.0
 anim_offset_random = 1.0
 
-[node name="ParticlesAsteroids" type="Particles2D"]
+[node name="BackgroundAsteroids" type="Particles2D"]
 material = SubResource( 1 )
 position = Vector2( 256, -64 )
+emitting = false
 amount = 20
 lifetime = 15.0
 process_material = SubResource( 2 )

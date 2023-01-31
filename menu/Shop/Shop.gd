@@ -7,14 +7,15 @@ onready var description = $"%Description"
 var shopButton = preload("res://menu/Shop/ShopButton.tscn")
 
 #################################################
+func _input(event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		_stop()
+
+#################################################
 func _ready():
 	MySignals.connect("shop_info", self, "_on_shop_info")
 	_clean_up_options()
 	_fill_options()
-
-func _input(event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		_stop()
 
 #################################################
 func _clean_up_options():

@@ -2,7 +2,7 @@ extends Node2D
 
 onready var timerWave = $TimerWave
 onready var timerSpawn = $TimerSpawn
-var cWave = {}
+var currentWave = {}
 const FIGHTERS1 = {
 	type = "enemy",
 	waveTime = 10,
@@ -107,14 +107,14 @@ func _ready():
 ########################################################################
 ### spawn during wave
 func _on_TimerSpawn_timeout():
-	match cWave.type:
+	match currentWave.type:
 		"enemy": _spawn_enemy()
 		"boss": _spawn_boss()
 		"dialog": _spawn_dialog()
 
 ### spawn dialog
 func _spawn_dialog():
-	var new_dialog = Dialogic.start(cWave.timeline)
+	var new_dialog = Dialogic.start(currentWave.timeline)
 	add_child(new_dialog)
 	new_dialog.connect("timeline_end", self, "_on_timeline_end")
 
@@ -125,19 +125,20 @@ func _on_timeline_end(_timeline):
 ### spawn boss
 func _spawn_boss():
 	#yield(get_tree().create_timer(3), "timeout")
-	var new = cWave.file.instance()
+	MySignals.emit_signal("stop_background")
+	var new = currentWave.file.instance()
 	add_child(new)
 
 ### spawn enemy
 func _spawn_enemy():
-	timerSpawn.start(cWave.spawnTimer)
-	var new = cWave.file[Utils.rng.randi_range(0, cWave.file.size() -1)].instance()
+	timerSpawn.start(currentWave.spawnTimer)
+	var new = currentWave.file[Utils.rng.randi_range(0, currentWave.file.size() -1)].instance()
 	new.global_position = _get_start_position()
 	add_child(new)
 
 func _get_start_position():
-	var posX = Utils.rng.randi_range(cWave.offsetX, Utils.window_width -cWave.offsetX)
-	var posY = -cWave.offsetY
+	var posX = Utils.rng.randi_range(currentWave.offsetX, Utils.window_width -currentWave.offsetX)
+	var posY = -currentWave.offsetY
 	return Vector2(posX, posY)
 
 ########################################################################
@@ -159,15 +160,15 @@ func _stop_old_wave():
 	MySignals.emit_signal("debris_stop")
 
 func _select_next_wave():
-	cWave = MISSION.pop_front()
+	currentWave = MISSION.pop_front()
 
 func _start_next_wave():
-	timerSpawn.start(cWave.spawnTimer)
-	if cWave.type == "enemy":
-		timerWave.start(cWave.waveTime)
+	timerSpawn.start(currentWave.spawnTimer)
+	if currentWave.type == "enemy":
+		timerWave.start(currentWave.waveTime)
 
 func _start_wave_background():
-	if cWave == ASTEROIDS: MySignals.emit_signal("asteroids_start")
-	if cWave == DEBRIS: MySignals.emit_signal("debris_start")
+	if currentWave == ASTEROIDS: MySignals.emit_signal("asteroids_start")
+	if currentWave == DEBRIS: MySignals.emit_signal("debris_start")
 
 

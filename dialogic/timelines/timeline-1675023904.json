@@ -1,21 +1,45 @@
 {
 	"events": [
 		{
-			"character": "character-1675023728.json",
+			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Hello World!"
+			"text": "Ahoi Commander! Welcome to the Lantia System!"
 		},
 		{
-			"character": "character-1675023728.json",
+			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "This is really cool, right?"
+			"text": "I am your communications officer lieutenant Jinx. I am here to keep your up to date."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Your first mission will be a simple patrole through a nearby asteroid field."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "We don't expect any trouble. Just avoid getting hit by asteroids and you should be good."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You can shoot down a few of the rocks while you are there."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Salvaging the rubble is easy earned money. You can use that later to upgrade your ship."
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
 		"file": "timeline-1675023904.json",
-		"name": "HelloWorld"
+		"name": "AhoiCommander1"
 	}
 }

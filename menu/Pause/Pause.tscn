@@ -21,7 +21,7 @@ margin_bottom = 78.0
 
 [node name="Label" type="Label" parent="C/MC/VC" index="0"]
 margin_top = 6.0
-margin_right = 202.0
+margin_right = 192.0
 margin_bottom = 28.0
 theme = ExtResource( 1 )
 text = "- Pause -"
@@ -31,7 +31,7 @@ uppercase = true
 [node name="BtnReturn" parent="C/MC/VC" index="1" instance=ExtResource( 2 )]
 anchor_right = 0.0
 margin_top = 33.0
-margin_right = 202.0
+margin_right = 192.0
 margin_bottom = 50.0
 labelText = "Return"
 startFocus = true
@@ -39,9 +39,9 @@ startFocus = true
 [node name="BtnQuit" parent="C/MC/VC" index="2" instance=ExtResource( 2 )]
 anchor_right = 0.0
 margin_top = 55.0
-margin_right = 202.0
+margin_right = 192.0
 margin_bottom = 72.0
-labelText = "Quit"
+labelText = "Abort Mission"
 
 [connection signal="pressed" from="C/MC/VC/BtnReturn" to="." method="_on_BtnReturn_pressed"]
 [connection signal="pressed" from="C/MC/VC/BtnQuit" to="." method="_on_BtnQuit_pressed"]
