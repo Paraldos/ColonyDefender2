@@ -40,9 +40,9 @@ func _enter_tree():
 #################################################
 func _new_game():
 	player = newPlayer.duplicate()
-	_start_mission()
+	_start_new_mission()
 
-func _start_mission():
+func _start_new_mission():
 	oldPlayer = player.duplicate()
 	player.hp = _get_hp_max()
 	player.energy = player.energy_max
