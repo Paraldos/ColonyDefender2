@@ -8,6 +8,7 @@ var mission = [
 	PIRATE_BOSS
 ]
 var currentWave = {}
+
 const FIGHTERS1 = {
 	type = "enemy",
 	waveTime = 10,
