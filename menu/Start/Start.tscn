@@ -3,7 +3,7 @@
 [ext_resource path="res://background/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://menu/Start/Start.gd" type="Script" id=2]
 [ext_resource path="res://img/Logo.png" type="Texture" id=3]
-[ext_resource path="res://theme/Button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://theme/BtnTemplate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=5]
 
 [node name="StartMenu" instance=ExtResource( 5 )]
@@ -12,6 +12,7 @@ script = ExtResource( 2 )
 aktivate_pause = false
 
 [node name="Background" parent="." index="0" instance=ExtResource( 1 )]
+SPEED = Vector2( 0.2, -0.5 )
 
 [node name="C" parent="." index="3"]
 anchor_left = 0.5
@@ -19,40 +20,52 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -119.0
-margin_top = -13.0
+margin_top = -17.0
 margin_right = 119.0
-margin_bottom = 89.0
+margin_bottom = 93.0
 
 [node name="VC" parent="C/MC" index="0"]
 margin_right = 214.0
-margin_bottom = 88.0
+margin_bottom = 96.0
 
 [node name="BtnNew" parent="C/MC/VC" index="0" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 13.0
-margin_right = 214.0
-margin_bottom = 30.0
-labelText = "New Game"
+margin_left = 66.0
+margin_top = 6.0
+margin_right = 148.0
+margin_bottom = 23.0
+text = "New"
 startFocus = true
 
-[node name="BtnCredits" parent="C/MC/VC" index="1" instance=ExtResource( 4 )]
+[node name="BtnLoad" parent="C/MC/VC" index="1" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 35.0
-margin_right = 214.0
-margin_bottom = 52.0
-labelText = "Credits"
+margin_left = 64.0
+margin_top = 28.0
+margin_right = 150.0
+margin_bottom = 45.0
+disabled = true
+text = "Load"
 
-[node name="BtnQuit" parent="C/MC/VC" index="2" instance=ExtResource( 4 )]
+[node name="BtnCredits" parent="C/MC/VC" index="2" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_top = 57.0
-margin_right = 214.0
-margin_bottom = 74.0
-labelText = "Quit"
+margin_left = 57.0
+margin_top = 50.0
+margin_right = 157.0
+margin_bottom = 67.0
+text = "Credits"
+
+[node name="BtnQuit" parent="C/MC/VC" index="3" instance=ExtResource( 4 )]
+anchor_right = 0.0
+margin_left = 65.0
+margin_top = 72.0
+margin_right = 148.0
+margin_bottom = 89.0
+text = "Quit"
 
 [node name="Logo" type="TextureRect" parent="." index="4"]
 anchor_right = 1.0
-margin_top = 56.0
-margin_bottom = 100.0
+margin_top = 40.0
+margin_bottom = 84.0
 texture = ExtResource( 3 )
 stretch_mode = 4
 

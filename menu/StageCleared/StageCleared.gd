@@ -37,11 +37,5 @@ func _update_credits_counter():
 	return 1000
 
 #################################################
-func _on_BtnNextStage_pressed():
-	Utils._next_stage()
-	SceneTransition.change_scene("res://world/World.tscn")
-
-func _on_BtnShop_pressed():
-	Utils._open_shop()
-
-
+func _on_BtnHome_pressed():
+	Utils._open_home()

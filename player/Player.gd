@@ -24,13 +24,13 @@ var hard_tilt = 0.8
 ### other
 const EXPLOSION = preload("res://explosions/Explosion05.tscn")
 var megashield = false
-var aktive = true
+var player_disabled = false
 
 #################################################
 func _ready():
 	MySignals.connect("megashield_on", self, "_on_megashield_on")
 	MySignals.connect("megashield_off", self, "_on_megashield_off")
-	MySignals.connect("boss_dead", self, "_on_boss_dead")
+	MySignals.connect("end_stage", self, "_on_end_stage")
 	Utils.player_node = self
 
 #################################################
@@ -38,7 +38,7 @@ func _physics_process(delta):
 	Utils.player_pos = global_position
 	if Utils.player.hp <= 0: _death_shacke()
 	###
-	if !aktive: return
+	if player_disabled: return
 	else:
 		if Input.is_action_just_pressed("ui_selfdestruction"):
 			_on_Hurtbox_hit(Utils.player.hp)
@@ -99,7 +99,7 @@ func _animation():
 ### getting hit and player death
 func _on_Hurtbox_hit(dmg):
 	if animHit.is_playing(): return
-	if !aktive: return
+	if player_disabled: return
 	if megashield: return
 	###
 	animHit.play("start")
@@ -108,7 +108,7 @@ func _on_Hurtbox_hit(dmg):
 	MySignals.emit_signal("hp_update")
 	###
 	if Utils.player.hp <= 0:
-		aktive = false
+		player_disabled = true
 		audioDeath.play()
 		deathTimer.start()
 
@@ -128,23 +128,28 @@ func _death_shacke():
 	sprite.offset.y = Utils.rng.randf_range(-offset, offset)
 
 #################################################
-### boss death
-func _on_boss_dead():
-	aktive = false
+### leave level
+func _on_end_stage(wait_time):
+	### disable player controlls and hurtbox
+	player_disabled = true
+	### fade out UI
 	MySignals.emit_signal("stop_ui")
+	### move to start position
 	yield(_move_to_startposition(), "completed")
-	yield(get_tree().create_timer(3), "timeout")
 	MySignals.emit_signal("start_background", 0, -0.5)
+	### Warpdrive
+	yield(get_tree().create_timer(wait_time), "timeout")
 	warpdrive._start()
 
 func _move_to_startposition():
+	### adjust player animation to fit movement
 	if global_position.x < Utils.window_width/2 -16:
 		anim_stateMachine.travel("Right")
 	elif global_position.x > Utils.window_width/2 +16:
 		anim_stateMachine.travel("Left")
 	else:
 		anim_stateMachine.travel("Center")
-	##########
+	### move player
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(
 		self,
@@ -152,9 +157,10 @@ func _move_to_startposition():
 		Vector2(Utils.window_width/2, 210),
 		1)
 	yield(tween, "finished")
-	##########
+	### reset player animation to default
 	anim_stateMachine.travel("Center")
 
 func _on_Warpdrive_warp_done():
+	# open stage cleared screan after player has left the screan
 	Utils._open_stage_cleared()
 	queue_free()

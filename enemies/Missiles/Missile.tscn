@@ -4,7 +4,7 @@
 [ext_resource path="res://player/Exhaust.tscn" type="PackedScene" id=2]
 [ext_resource path="res://audio/missile.wav" type="AudioStream" id=3]
 [ext_resource path="res://enemies/Missiles/Missile.gd" type="Script" id=4]
-[ext_resource path="res://img/Missile2.png" type="Texture" id=5]
+[ext_resource path="res://img/Missile.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=3]
 length = 0.001
