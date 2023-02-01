@@ -3,7 +3,7 @@
 [ext_resource path="res://background/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://menu/Start/Start.gd" type="Script" id=2]
 [ext_resource path="res://img/Logo.png" type="Texture" id=3]
-[ext_resource path="res://theme/Button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://theme/BtnTemplate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=5]
 
 [node name="StartMenu" instance=ExtResource( 5 )]
@@ -30,33 +30,41 @@ margin_bottom = 96.0
 
 [node name="BtnNew" parent="C/MC/VC" index="0" instance=ExtResource( 4 )]
 anchor_right = 0.0
+margin_left = 66.0
 margin_top = 6.0
-margin_right = 214.0
+margin_right = 148.0
 margin_bottom = 23.0
-labelText = "New Game"
+size_flags_horizontal = 4
+text = "New"
 startFocus = true
 
 [node name="BtnLoad" parent="C/MC/VC" index="1" instance=ExtResource( 4 )]
 anchor_right = 0.0
+margin_left = 64.0
 margin_top = 28.0
-margin_right = 214.0
+margin_right = 150.0
 margin_bottom = 45.0
+size_flags_horizontal = 4
 disabled = true
-labelText = "Load Game"
+text = "Load"
 
 [node name="BtnCredits" parent="C/MC/VC" index="2" instance=ExtResource( 4 )]
 anchor_right = 0.0
+margin_left = 57.0
 margin_top = 50.0
-margin_right = 214.0
+margin_right = 157.0
 margin_bottom = 67.0
-labelText = "Credits"
+size_flags_horizontal = 4
+text = "Credits"
 
 [node name="BtnQuit" parent="C/MC/VC" index="3" instance=ExtResource( 4 )]
 anchor_right = 0.0
+margin_left = 65.0
 margin_top = 72.0
-margin_right = 214.0
+margin_right = 148.0
 margin_bottom = 89.0
-labelText = "Quit"
+size_flags_horizontal = 4
+text = "Quit"
 
 [node name="Logo" type="TextureRect" parent="." index="4"]
 anchor_right = 1.0

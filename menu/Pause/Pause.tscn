@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://theme/h1.tres" type="Theme" id=1]
-[ext_resource path="res://theme/Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://theme/BtnTemplate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menu/Pause/Pause.gd" type="Script" id=4]
 
@@ -30,18 +30,20 @@ uppercase = true
 
 [node name="BtnReturn" parent="C/MC/VC" index="1" instance=ExtResource( 2 )]
 anchor_right = 0.0
+margin_left = 48.0
 margin_top = 33.0
-margin_right = 192.0
+margin_right = 144.0
 margin_bottom = 50.0
-labelText = "Return"
+text = "Return"
 startFocus = true
 
 [node name="BtnQuit" parent="C/MC/VC" index="2" instance=ExtResource( 2 )]
 anchor_right = 0.0
+margin_left = 54.0
 margin_top = 55.0
-margin_right = 192.0
+margin_right = 137.0
 margin_bottom = 72.0
-labelText = "Abort Mission"
+text = "Quit"
 
 [connection signal="pressed" from="C/MC/VC/BtnReturn" to="." method="_on_BtnReturn_pressed"]
 [connection signal="pressed" from="C/MC/VC/BtnQuit" to="." method="_on_BtnQuit_pressed"]

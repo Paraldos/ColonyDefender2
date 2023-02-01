@@ -92,13 +92,13 @@ config/icon="res://img/EnergyContainer.png"
 
 [autoload]
 
-Utils="*res://Tec/Utils.tscn"
-SceneTransition="*res://Tec/SceneTransition.tscn"
-MyDb="*res://Tec/myDB.gd"
-MySignals="*res://Tec/mySignals.gd"
-MyMusic="*res://Tec/myMusic.tscn"
-MyLoot="*res://Tec/myLoot.gd"
-MyPause="*res://Tec/myPause.tscn"
+Utils="*res://Tec/Utils/Utils.tscn"
+MyPause="*res://Tec/MyPause/myPause.tscn"
+MySignals="*res://Tec/MySignals/mySignals.gd"
+MySceneTransition="*res://Tec/MySceneTransition/MySceneTransition.tscn"
+MyDb="*res://Tec/MyDB/MyDB.gd"
+MyLoot="*res://Tec/MyLoot/myLoot.tscn"
+MyMusic="*res://Tec/MyMusic/myMusic.tscn"
 
 [debug]
 

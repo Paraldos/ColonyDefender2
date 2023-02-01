@@ -3,11 +3,9 @@ extends CanvasLayer
 onready var anim = $Anim
 export var fade = true
 export var aktivate_pause = true
-export(float) var waitTime = 0
 
 ###########################################################
 func _ready():
-	yield(get_tree().create_timer(waitTime), "timeout")
 	_start()
 
 ###########################################################

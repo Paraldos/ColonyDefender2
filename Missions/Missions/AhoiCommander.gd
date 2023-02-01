@@ -1,4 +1,4 @@
-extends "res://Missions/template/MissionTemplate.gd"
+extends "res://Missions/MissionTemplate.gd"
 
 func _ready():
 	mission = [
@@ -6,9 +6,9 @@ func _ready():
 		ASTEROIDS,
 		ASTEROIDS,
 		DEBRIS,
-		{type = "dialog", timeline = "AhoiCommander2", spawnTimer = 0},
+		{type = "dialog", timeline = "AhoiCommander2", spawnTimer = 1},
 		PIRATE_FIGHTER,
 		DEBRIS,
 		PIRATE_FIGHTER,
-		{type = "dialog", timeline = "AhoiCommander3", spawnTimer = 0},
+		{ type = "dialog", timeline = "AhoiCommander3", spawnTimer = 4 },
 	]

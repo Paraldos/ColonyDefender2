@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menu/Shop/Shop.gd" type="Script" id=1]
-[ext_resource path="res://theme/Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://theme/BtnTemplate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menu/CreditsLabel.tscn" type="PackedScene" id=5]
 
@@ -27,12 +27,19 @@ margin_bottom = 201.0
 margin_right = 336.0
 margin_bottom = 17.0
 
-[node name="BtnExit" parent="C/MC/VC/Header" index="0" instance=ExtResource( 3 )]
-anchor_right = 0.0
+[node name="HBoxContainer" type="HBoxContainer" parent="C/MC/VC/Header" index="0"]
 margin_right = 166.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
-labelText = "Exit"
+size_flags_vertical = 3
+alignment = 1
+
+[node name="BtnExit" parent="C/MC/VC/Header/HBoxContainer" index="0" instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_left = 41.0
+margin_right = 124.0
+margin_bottom = 17.0
+text = "Exit"
 startFocus = true
 
 [node name="CreditsLabel" parent="C/MC/VC/Header" index="1" instance=ExtResource( 5 )]
@@ -60,25 +67,29 @@ size_flags_horizontal = 3
 
 [node name="#Button" parent="C/MC/VC/Content/Options" index="0" instance=ExtResource( 3 )]
 anchor_right = 0.0
-margin_right = 162.0
+margin_left = 50.0
+margin_right = 112.0
 margin_bottom = 17.0
 
 [node name="#Button2" parent="C/MC/VC/Content/Options" index="1" instance=ExtResource( 3 )]
 anchor_right = 0.0
+margin_left = 50.0
 margin_top = 22.0
-margin_right = 162.0
+margin_right = 112.0
 margin_bottom = 39.0
 
 [node name="#Button3" parent="C/MC/VC/Content/Options" index="2" instance=ExtResource( 3 )]
 anchor_right = 0.0
+margin_left = 50.0
 margin_top = 44.0
-margin_right = 162.0
+margin_right = 112.0
 margin_bottom = 61.0
 
 [node name="#Button4" parent="C/MC/VC/Content/Options" index="3" instance=ExtResource( 3 )]
 anchor_right = 0.0
+margin_left = 50.0
 margin_top = 66.0
-margin_right = 162.0
+margin_right = 112.0
 margin_bottom = 83.0
 
 [node name="Sep" type="VSeparator" parent="C/MC/VC/Content" index="1"]
@@ -120,4 +131,4 @@ margin_right = 162.0
 margin_bottom = 61.0
 autowrap = true
 
-[connection signal="pressed" from="C/MC/VC/Header/BtnExit" to="." method="_on_BtnExit_pressed"]
+[connection signal="pressed" from="C/MC/VC/Header/HBoxContainer/BtnExit" to="." method="_on_BtnExit_pressed"]

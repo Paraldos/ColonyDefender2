@@ -4,7 +4,7 @@
 [ext_resource path="res://menu/HomeBase/HomeBase.gd" type="Script" id=2]
 [ext_resource path="res://background/Background.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=4]
-[ext_resource path="res://theme/Button.tscn" type="PackedScene" id=5]
+[ext_resource path="res://theme/BtnTemplate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://theme/h1.tres" type="Theme" id=6]
 
 [node name="HomeBase" type="Node2D"]
@@ -19,7 +19,6 @@ centered = false
 
 [node name="Menu" parent="." instance=ExtResource( 4 )]
 aktivate_pause = false
-waitTime = 0.5
 
 [node name="C" parent="Menu" index="2"]
 anchor_left = 1.0
@@ -35,47 +34,49 @@ margin_right = 182.0
 margin_bottom = 152.0
 
 [node name="LabelStation" type="Label" parent="Menu/C/MC/VC" index="0"]
-margin_top = 11.0
+margin_top = 16.0
 margin_right = 182.0
-margin_bottom = 33.0
+margin_bottom = 38.0
 theme = ExtResource( 6 )
 text = "Space Station 'Home'"
 align = 1
 
 [node name="LabelPlanet" type="Label" parent="Menu/C/MC/VC" index="1"]
-margin_top = 38.0
+margin_top = 43.0
 margin_right = 182.0
-margin_bottom = 55.0
+margin_bottom = 60.0
 text = "Low Orbit of Lantia III"
 align = 1
 
-[node name="Sep" type="Control" parent="Menu/C/MC/VC" index="2"]
-margin_top = 60.0
+[node name="HSeparator" type="HSeparator" parent="Menu/C/MC/VC" index="2"]
+margin_top = 65.0
 margin_right = 182.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 0, 15 )
+margin_bottom = 69.0
 
 [node name="BtnMissions" parent="Menu/C/MC/VC" index="3" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_top = 80.0
-margin_right = 182.0
-margin_bottom = 97.0
-labelText = "Missions"
+margin_left = 38.0
+margin_top = 74.0
+margin_right = 143.0
+margin_bottom = 91.0
+text = "Missions"
 startFocus = true
 
 [node name="BtnShop" parent="Menu/C/MC/VC" index="4" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_top = 102.0
-margin_right = 182.0
-margin_bottom = 119.0
-labelText = "Shop"
+margin_left = 48.0
+margin_top = 96.0
+margin_right = 134.0
+margin_bottom = 113.0
+text = "Shop"
 
 [node name="BtnQuit" parent="Menu/C/MC/VC" index="5" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_top = 124.0
-margin_right = 182.0
-margin_bottom = 141.0
-labelText = "Quit"
+margin_left = 49.0
+margin_top = 118.0
+margin_right = 132.0
+margin_bottom = 135.0
+text = "Quit"
 
 [connection signal="pressed" from="Menu/C/MC/VC/BtnMissions" to="." method="_on_BtnMissions_pressed"]
 [connection signal="pressed" from="Menu/C/MC/VC/BtnShop" to="." method="_on_BtnShop_pressed"]

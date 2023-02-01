@@ -6,4 +6,5 @@ func _on_BtnAgain_pressed():
 	get_tree().reload_current_scene()
 
 func _on_BtnBack_pressed():
-	Utils._open_start()
+	Utils._abort_mission()
+	Utils._open_home()
