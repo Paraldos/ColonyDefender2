@@ -1,8 +1,10 @@
 extends "res://menu/Menu.gd"
 
+onready var btnNew = $C/MC/VC/BtnNew
+
 ########################################################################
 func _ready():
-	pass
+	btnNew.grab_focus()
 
 ########################################################################
 func _on_BtnNew_pressed():
