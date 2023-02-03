@@ -17,36 +17,20 @@ margin_top = -107.5
 margin_right = 180.0
 margin_bottom = 107.5
 
+[node name="MC" parent="C" index="1"]
+margin_top = 12.0
+
 [node name="VC" parent="C/MC" index="0"]
 margin_right = 336.0
-margin_bottom = 201.0
+margin_bottom = 196.0
 
-[node name="Header" type="HBoxContainer" parent="C/MC/VC" index="0"]
-margin_right = 336.0
-margin_bottom = 17.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="C/MC/VC/Header" index="0"]
-margin_right = 166.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="BtnExit" parent="C/MC/VC/Header/HBoxContainer" index="0" instance=ExtResource( 2 )]
+[node name="BtnExit" parent="C/MC/VC" index="0" instance=ExtResource( 2 )]
 anchor_right = 0.0
-margin_left = 41.0
-margin_right = 124.0
+margin_left = 126.0
+margin_right = 209.0
 margin_bottom = 17.0
 text = "Exit"
 startFocus = true
-
-[node name="Label" type="Label" parent="C/MC/VC/Header" index="1"]
-margin_left = 170.0
-margin_right = 336.0
-margin_bottom = 17.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-text = "Missions"
-align = 1
 
 [node name="Sep" type="HSeparator" parent="C/MC/VC" index="1"]
 margin_top = 22.0
@@ -56,20 +40,20 @@ margin_bottom = 26.0
 [node name="Content" type="HBoxContainer" parent="C/MC/VC" index="2"]
 margin_top = 31.0
 margin_right = 336.0
-margin_bottom = 201.0
+margin_bottom = 196.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="SC2" type="ScrollContainer" parent="C/MC/VC/Content" index="0"]
 margin_right = 162.0
-margin_bottom = 170.0
+margin_bottom = 165.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Buttons" type="VBoxContainer" parent="C/MC/VC/Content/SC2" index="0"]
 unique_name_in_owner = true
 margin_right = 162.0
-margin_bottom = 170.0
+margin_bottom = 165.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -96,21 +80,21 @@ margin_bottom = 61.0
 [node name="Sep" type="VSeparator" parent="C/MC/VC/Content" index="1"]
 margin_left = 166.0
 margin_right = 170.0
-margin_bottom = 170.0
+margin_bottom = 165.0
 
 [node name="SC" type="ScrollContainer" parent="C/MC/VC/Content" index="2"]
 margin_left = 174.0
 margin_right = 336.0
-margin_bottom = 170.0
+margin_bottom = 165.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Description" type="Label" parent="C/MC/VC/Content/SC" index="0"]
 unique_name_in_owner = true
 margin_right = 162.0
-margin_bottom = 170.0
+margin_bottom = 165.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 autowrap = true
 
-[connection signal="pressed" from="C/MC/VC/Header/HBoxContainer/BtnExit" to="." method="_on_BtnExit_pressed"]
+[connection signal="pressed" from="C/MC/VC/BtnExit" to="." method="_on_BtnExit_pressed"]

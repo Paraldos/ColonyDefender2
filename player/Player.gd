@@ -30,7 +30,7 @@ var player_disabled = false
 func _ready():
 	MySignals.connect("megashield_on", self, "_on_megashield_on")
 	MySignals.connect("megashield_off", self, "_on_megashield_off")
-	MySignals.connect("end_stage", self, "_on_end_stage")
+	MySignals.connect("initiate_warp_jump", self, "_on_initiate_warp_jump")
 	Utils.player_node = self
 
 #################################################
@@ -129,7 +129,8 @@ func _death_shacke():
 
 #################################################
 ### leave level
-func _on_end_stage(wait_time):
+func _on_initiate_warp_jump(wait_time):
+	print("player")
 	### disable player controlls and hurtbox
 	player_disabled = true
 	### fade out UI

@@ -4,7 +4,8 @@ var mission
 
 func _on_BtnMission_pressed():
 	Utils._start_new_mission()
-	MySceneTransition.change_scene(mission.file)
+	MyMissions.currentMission = mission
+	MySceneTransition.change_scene("res://Battle/Battle.tscn")
 
 func _on_BtnMission_focus_entered():
 	MySignals.emit_signal("mission_info", mission.description)

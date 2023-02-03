@@ -1,47 +1,66 @@
-extends "res://enemies/Boss/Boss.gd"
+extends Node2D
 
 #################################################
+onready var animHit = $Body/AnimHit
+onready var bossUi = $BossUI
+onready var moveTimer = $Body/MoveTimer
+onready var deathTimer = $Body/DeathTimer
+onready var gun = $Body/Gun
+onready var pulse = $Body/Pulse
+onready var salvo = $Body/Gun/Salvo
+onready var posExplosions = $Body/PosExplosions
+
 var MINI_EXPLOSION = preload("res://explosions/Explosion01.tscn")
 var BIG_EXPLOSION = preload("res://explosions/Explosion05.tscn")
-# nodes
-onready var moveTimer = $MoveTimer
-onready var deathTimer = $DeathTimer
-onready var animDeath = $AnimDeath
-onready var salvo = $Gun/Sprite/Salvo
-onready var pulse = $Pulse
-onready var gun = $Gun
-# attacks
+
+const OFFSET = 62
+export var hp = 100
+export var dmg = 2
+var introSpeed = 1.5
+var aktive = false
 var attackCycle = 0
-# movement
 var window_width = Utils.window_width
 var window_height = Utils.window_height
-var targetPosition = Vector2.ZERO
-const OFFSET = 62
 
 #################################################
-func _intro_done():
-	moveTimer.start(0)
+func _ready():
+	global_position.x = Utils.window_width / 2
+	yield(_move_onto_screen(), "completed")
+	yield(_start_ui(), "completed")
+	aktive = true
+	moveTimer.start()
+
+func _move_onto_screen():
+	var tween = create_tween()
+	tween.tween_property(
+		self,
+		"global_position",
+		Vector2(Utils.window_width / 2, 120),
+		introSpeed)
+	yield(tween, "finished")
+
+func _start_ui():
+	bossUi._start(hp)
+	yield(get_tree().create_timer(1), "timeout")
 
 #################################################
+### default behaviour
 func _on_MoveTimer_timeout():
 	if !aktive: return
-	targetPosition = _get_targetPosition()
 	yield(_move(), "completed")
 	_attack()
-	moveTimer.start(1)
+	moveTimer.start()
 
-### move
 func _move():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(
 		self,
 		"global_position",
-		targetPosition,
+		_get_target_position(),
 		1)
 	yield(tween, "finished")
 
-### target position
-func _get_targetPosition():
+func _get_target_position():
 	###
 	var posX = Utils.rng.randi_range(OFFSET, window_width/2 -OFFSET)
 	if global_position.x <= window_width/2: posX += window_width/2
@@ -51,16 +70,15 @@ func _get_targetPosition():
 	###
 	return Vector2(posX, posY)
 
-### attack
 func _attack():
 	if !aktive: return
 	match Utils.rng.randi_range(0, 1):
 		0: 
 			salvo.look_at(Utils.player_pos)
-			salvo._attack(baseDmg)
+			salvo._attack(dmg)
 		1: 
 			for i in 3:
-				pulse._attack(baseDmg)
+				pulse._attack(dmg)
 				yield(get_tree().create_timer(0.2), "timeout")
 
 #################################################
@@ -88,8 +106,8 @@ func _on_Hitbox_area_entered(_area):
 
 func _death():
 	if hp > 0: return
-	MySignals.emit_signal("end_stage")
 	_disable_everything()
+	MySignals.emit_signal("boss_defeated")
 	_mini_explosions()
 	yield(_move_to_center_of_screen(), "completed")
 	_big_explosion()
@@ -106,12 +124,11 @@ func _disable_everything():
 ### mini explosions
 func _mini_explosions():
 	deathTimer.start(0.1)
-	animDeath.play("loop")
 
 func _on_DeathTimer_timeout():
 	var new = MINI_EXPLOSION.instance()
-	var offset = Vector2(Utils.rng.randi_range(-32, 32), Utils.rng.randi_range(-15, 15))
-	new.global_position = global_position + offset
+	var offset = Vector2(Utils.rng.randi_range(-32, 32), Utils.rng.randi_range(-32, 32))
+	new.global_position = posExplosions.global_position + offset
 	new.scale = Vector2(1.3, 1.3)
 	get_tree().current_scene.add_child(new)
 
@@ -129,5 +146,6 @@ func _move_to_center_of_screen():
 ### big explosion
 func _big_explosion():
 	var new = BIG_EXPLOSION.instance()
-	new.global_position = global_position
+	new.global_position = posExplosions.global_position
 	get_tree().current_scene.add_child(new)
+

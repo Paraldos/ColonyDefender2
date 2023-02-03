@@ -5,16 +5,7 @@ onready var description = $"%Description"
 var btnMission = preload("res://menu/Missions/BtnMission.tscn")
 
 ########################################################################
-### Missions
-var missions = [
-	{	title = "Ahoi Commander",
-		file = "res://Missions/Missions/AhoiCommander.tscn",
-		description = "Welcome to Lantia III Commander. This cozy little colony on the edge of federation space is your new home. Your first mission will be a simple patrole through a nearby asteroid field.",
-	},
-]
-
-########################################################################
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		_stop()
 
@@ -29,7 +20,7 @@ func _clean_buttons():
 		item.queue_free()
 
 func _fill_buttons():
-	for mission in missions:
+	for mission in MyMissions.MISSIONS:
 		var new = btnMission.instance()
 		new.text = mission.title
 		new.mission = mission

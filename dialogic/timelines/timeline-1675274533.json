@@ -1,0 +1,21 @@
+{
+	"events": [
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I plotted your course through a nearby asteroid field. this should allow you to surprise the pirates."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Shoot down as many pirates as possible. Good hunting Commander. "
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1675274533.json",
+		"name": "PirateHunt1"
+	}
+}

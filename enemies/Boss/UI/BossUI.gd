@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 onready var anim = $Anim
-onready var nameLabel = $Name
 onready var over = $Health/Over
 onready var under = $Health/Under
 
@@ -14,8 +13,7 @@ func _stop():
 	anim.play_backwards("start")
 
 #################################################
-func _start(name, hp_max):
-	nameLabel.text = name
+func _start(hp_max):
 	anim.play("start")
 	_update_max(hp_max)
 

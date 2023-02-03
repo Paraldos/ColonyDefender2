@@ -39,7 +39,7 @@ func _denied():
 	modulate = Color("ffffff")
 
 ####################################
-func _on_Button_gui_input(event):
+func _on_Button_gui_input(_event):
 	if Input.is_action_just_pressed("ui_leftclick") and disabled:
 		_denied()
 	if Input.is_action_just_pressed("ui_accept") and disabled:

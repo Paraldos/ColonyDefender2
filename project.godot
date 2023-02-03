@@ -99,6 +99,7 @@ MySceneTransition="*res://Tec/MySceneTransition/MySceneTransition.tscn"
 MyDb="*res://Tec/MyDB/MyDB.gd"
 MyLoot="*res://Tec/MyLoot/myLoot.tscn"
 MyMusic="*res://Tec/MyMusic/myMusic.tscn"
+MyMissions="*res://Tec/MyMissions/MyMissions.tscn"
 
 [debug]
 

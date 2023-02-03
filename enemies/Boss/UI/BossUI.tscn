@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://theme/h1.tres" type="Theme" id=1]
 [ext_resource path="res://img/HealthBar3.png" type="Texture" id=2]
 [ext_resource path="res://img/HealthBar1.png" type="Texture" id=3]
 [ext_resource path="res://enemies/Boss/UI/BossUI.gd" type="Script" id=4]
@@ -8,24 +7,12 @@
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Name:modulate")
+tracks/0/path = NodePath("Health:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Health:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -36,24 +23,12 @@ tracks/1/keys = {
 resource_name = "start"
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Name:modulate")
+tracks/0/path = NodePath("Health:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Health:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -66,16 +41,6 @@ script = ExtResource( 4 )
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
 anims/start = SubResource( 2 )
-
-[node name="Name" type="Label" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -234.0
-theme = ExtResource( 1 )
-text = "Testboss #1"
-align = 1
-valign = 1
 
 [node name="Health" type="CenterContainer" parent="."]
 modulate = Color( 1, 1, 1, 0 )
