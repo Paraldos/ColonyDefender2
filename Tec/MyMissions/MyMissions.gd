@@ -6,33 +6,22 @@ var currentMission = []
 class EnemyWave:
 	var name = ""
 	var type = "enemy"
-	var waveTime = 10
-	var spawnTimer = 0.8
-	var background = ""
+	var timer = 0
+	var counter = 0
 	var file = []
-	var offsetX = 40
-	var offsetY = 30
 
-	func _init(name, file = [], waveTime = 10, spawnTimer = 0.8, background = "", offsetX = 20, offsetY = 20):
+	func _init(name, file = [], timer = 0.8, counter = 10):
 		self.name = name
 		self.file = file
-		self.waveTime = waveTime
-		self.spawnTimer = spawnTimer
-		self.background = background
-		self.offsetX = offsetX
-		self.offsetY = offsetY
+		self.timer = timer
+		self.counter = counter
 
-	func _start_background():
-		if background != "":
-			MySignals.emit_signal("start_background_particles", background)
+	func _get_start_position():
+		var posX = Utils.rng.randi_range(32, Utils.window_width -32)
+		return Vector2(posX, -16)
 
 	func _get_file():
 		return file[ Utils.rng.randi_range(0, file.size() -1) ]
-	
-	func _get_start_position():
-		var posX = Utils.rng.randi_range(offsetX, Utils.window_width -offsetX)
-		var posY = -offsetY
-		return Vector2(posX, posY)
 
 ########################################################################
 ### premade enemy waves
@@ -46,8 +35,7 @@ var FIGHTERS2 = EnemyWave.new(
 
 var PIRATE_FIGHTER = EnemyWave.new(
 	"PIRATE_FIGHTER",
-	[preload("res://enemies/Fighters/Pirate_Fighter.tscn")],
-	10, 0.9)
+	[preload("res://enemies/Fighters/Pirate_Fighter.tscn")])
 
 var ASTEROIDS = EnemyWave.new(
 	"ASTEROIDS",
@@ -64,7 +52,7 @@ var ASTEROIDS = EnemyWave.new(
 		preload("res://enemies/Asteroids/Asteroid11.tscn"),
 		preload("res://enemies/Asteroids/Asteroid12.tscn"),
 		preload("res://enemies/Asteroids/ExplosiveAsteroid.tscn")],
-	20, 0.8, "Asteroids")
+	0.8, 20)
 
 var DEBRIS = EnemyWave.new(
 	"DEBRIS",
@@ -74,17 +62,17 @@ var DEBRIS = EnemyWave.new(
 		preload("res://enemies/Debris/Debris04.tscn"),
 		preload("res://enemies/Debris/Debris05.tscn"),
 		preload("res://enemies/Debris/Debris06.tscn")],
-	20, 0.8, "Debris")
+	0.8, 20)
 
 var GUNSHIPS = EnemyWave.new(
 	"GUNSHIPS",
 	[preload("res://enemies/Gunship/Gunship.tscn")],
-	8, 1.2)
+	1.2, 6)
 
 var MISSILES = EnemyWave.new(
 	"MISSILES",
 	[preload("res://enemies/Missiles/Missile.tscn")],
-	8, 0.5)
+	0.8, 10)
 
 var CRABSHIP = EnemyWave.new(
 	"CRABSHIP",
@@ -94,39 +82,36 @@ var CRABSHIP = EnemyWave.new(
 ### premade boss waves
 const PIRATEBOSS = {
 	name = "PIRATEBOSS",
-	spawnTimer = 3,
+	timer = 3,
 	type = "boss",
 	file = preload("res://enemies/Boss/PirateBoss/PirateBoss.tscn")
 }
 
 const PIRATEBASE = {
 	name = "PIRATEBASE",
-	spawnTimer = 3,
+	timer = 3,
 	type = "boss",
-	file = preload("res://enemies/Boss/Pirate_Base.tscn")
+	file = preload("res://enemies/Boss/PirateBase/PirateBase.tscn")
 }
-
-### dialog wave:
-#{ type = "dialog", timeline = "Hello", spawnTimer = 0 },
-
-### end of stage
-#{ type = "endOfStage", spawnTimer = 0, wait_time = 3 }
 
 ########################################################################
 var MISSIONS = [
 	{	title = "Ahoi Commander",
 		description = "Welcome to Lantia III Commander. This cozy little colony on the edge of federation space is your new home - at least for now. Your first mission will be a simple patrole through a nearby asteroid field.",
 		waves = [
-			{ type = "dialog", timeline = "AhoiCommander1", spawnTimer = 0 },
+			{ type = "dialog", timeline = "AhoiCommander1"},
+			{ type = "particles", background = "Asteroids"},
 			ASTEROIDS,
 			ASTEROIDS,
+			{ type = "particles", background = "Debris"},
 			DEBRIS,
-			{ type = "dialog", timeline = "AhoiCommander2", spawnTimer = 1 },
+			{ type = "dialog", timeline = "AhoiCommander2"},
 			PIRATE_FIGHTER,
 			DEBRIS,
 			PIRATE_FIGHTER,
-			{ type = "dialog", timeline = "AhoiCommander3", spawnTimer = 4 },
-			{ type = "endOfStage", spawnTimer = 0.5, wait_time = 1 }
+			{ type = "particles", background = ""},
+			{ type = "dialog", timeline = "AhoiCommander3"},
+			{ type = "endOfStage", timer = 1 }
 		]
 	},
 	#################################################
@@ -134,22 +119,25 @@ var MISSIONS = [
 		description = "One of our security outposts has spotted more pirate signatures. How about you fly out there, and show them that a new sheriff is in town?",
 		waves = [
 			{ type = "dialog", timeline = "PirateHunt1", spawnTimer = 0 },
+			{ type = "particles", background = "Asteroids"},
 			ASTEROIDS,
 			ASTEROIDS,
 			PIRATE_FIGHTER,
 			PIRATE_FIGHTER,
+			{ type = "particles", background = ""},
+			{ type = "dialog", timeline = "PirateHunt2", spawnTimer = 0 },
 			MISSILES,
 			PIRATE_FIGHTER,
 			PIRATEBOSS,
-			{ type = "endOfStage", spawnTimer = 0.1, wait_time = 3 }
+			{ type = "endOfStage", timer = 3 }
 		]
 	},
 	#################################################
 		{	title = "Pirate Base",
 		description = "We found the piartes home Base. It's hidden in an asteroid field on the very edge of the system. They certainly will know you are comming. Prepare for a hard fight.",
 		waves = [
-			PIRATEBOSS,
-			{ type = "endOfStage", spawnTimer = 0.1, wait_time = 3 }
+			PIRATEBASE,
+			{ type = "endOfStage", timer = 3 }
 		]
 	},
 	#################################################

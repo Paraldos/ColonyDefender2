@@ -130,7 +130,6 @@ func _death_shacke():
 #################################################
 ### leave level
 func _on_initiate_warp_jump(wait_time):
-	print("player")
 	### disable player controlls and hurtbox
 	player_disabled = true
 	### fade out UI

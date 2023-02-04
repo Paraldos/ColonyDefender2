@@ -5,6 +5,7 @@
 [ext_resource path="res://img/Asteroids_Explosive.png" type="Texture" id=3]
 
 [node name="ExplosiveAsteroid" instance=ExtResource( 1 )]
+position = Vector2( 0, -18 )
 script = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="1"]

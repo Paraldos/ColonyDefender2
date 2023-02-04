@@ -316,6 +316,7 @@ tracks/3/keys = {
 
 [node name="Megalaser" type="Position2D"]
 rotation = -1.5708
+z_index = 5
 script = ExtResource( 1 )
 
 [node name="Part" type="Particles2D" parent="."]

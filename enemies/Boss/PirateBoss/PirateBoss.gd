@@ -1,10 +1,11 @@
 extends Node2D
 
 #################################################
+onready var body = $Body
 onready var animHit = $Body/AnimHit
 onready var bossUi = $BossUI
 onready var moveTimer = $Body/MoveTimer
-onready var deathTimer = $Body/DeathTimer
+onready var TimerMiniExplosions = $Body/TimerMiniExplosions
 onready var gun = $Body/Gun
 onready var pulse = $Body/Pulse
 onready var salvo = $Body/Gun/Salvo
@@ -13,7 +14,6 @@ onready var posExplosions = $Body/PosExplosions
 var MINI_EXPLOSION = preload("res://explosions/Explosion01.tscn")
 var BIG_EXPLOSION = preload("res://explosions/Explosion05.tscn")
 
-const OFFSET = 62
 export var hp = 100
 export var dmg = 2
 var introSpeed = 1.5
@@ -24,7 +24,7 @@ var window_height = Utils.window_height
 
 #################################################
 func _ready():
-	global_position.x = Utils.window_width / 2
+	body.global_position.x = window_width / 2
 	yield(_move_onto_screen(), "completed")
 	yield(_start_ui(), "completed")
 	aktive = true
@@ -33,9 +33,9 @@ func _ready():
 func _move_onto_screen():
 	var tween = create_tween()
 	tween.tween_property(
-		self,
-		"global_position",
-		Vector2(Utils.window_width / 2, 120),
+		body,
+		"position",
+		Vector2(window_width / 2, 80),
 		introSpeed)
 	yield(tween, "finished")
 
@@ -54,21 +54,23 @@ func _on_MoveTimer_timeout():
 func _move():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(
-		self,
-		"global_position",
+		body,
+		"position",
 		_get_target_position(),
 		1)
 	yield(tween, "finished")
 
 func _get_target_position():
+	var OFFSET = 62
+	var POSX = Vector2.ZERO
+	if body.position.x >= window_width/2:
+		POSX = Utils.rng.randi_range(OFFSET, window_width/2 -OFFSET)
+	else:
+		POSX = Utils.rng.randi_range(window_width/2 +OFFSET, window_width -OFFSET)
 	###
-	var posX = Utils.rng.randi_range(OFFSET, window_width/2 -OFFSET)
-	if global_position.x <= window_width/2: posX += window_width/2
+	var POSY = Utils.rng.randi_range(OFFSET, window_height/2)
 	###
-	var posY = Vector2.ZERO
-	posY = Utils.rng.randi_range(OFFSET, window_height/2)
-	###
-	return Vector2(posX, posY)
+	return Vector2(POSX, POSY)
 
 func _attack():
 	if !aktive: return
@@ -86,11 +88,10 @@ func _on_Hurtbox_hit(dmg):
 	if !aktive: return
 	if animHit.is_playing(): return
 	###
-	if dmg > 15: dmg = 15
-	###
-	Utils._dmg_label(dmg, global_position)
+	Utils._dmg_label(dmg, body.position)
 	animHit.play("hit")
 	###
+	if dmg > 15: dmg = 15
 	hp -= dmg
 	bossUi._update_hp(hp)
 	_death()
@@ -106,9 +107,10 @@ func _on_Hitbox_area_entered(_area):
 
 func _death():
 	if hp > 0: return
+	############################
 	_disable_everything()
 	MySignals.emit_signal("boss_defeated")
-	_mini_explosions()
+	TimerMiniExplosions.start()
 	yield(_move_to_center_of_screen(), "completed")
 	_big_explosion()
 	queue_free()
@@ -122,22 +124,28 @@ func _disable_everything():
 	pulse._stop()
 
 ### mini explosions
-func _mini_explosions():
-	deathTimer.start(0.1)
+func _on_TimerMiniExplosions_timeout():
+	for i in 2:
+		_mini_explosion()
 
-func _on_DeathTimer_timeout():
+func _mini_explosion():
 	var new = MINI_EXPLOSION.instance()
-	var offset = Vector2(Utils.rng.randi_range(-32, 32), Utils.rng.randi_range(-32, 32))
-	new.global_position = posExplosions.global_position + offset
-	new.scale = Vector2(1.3, 1.3)
+	############################
+	var offsetX = Utils.rng.randi_range(-32, 32)
+	var offsetY = Utils.rng.randi_range(-32, 32)
+	new.global_position = posExplosions.global_position + Vector2(offsetX, offsetY)
+	############################
+	var scaleOffset = Utils.rng.randi_range(0.8, 1.2)
+	new.scale = Vector2(scaleOffset, scaleOffset)
+	############################
 	get_tree().current_scene.add_child(new)
 
 ### move to center
 func _move_to_center_of_screen():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(
-		self,
-		"global_position",
+		body,
+		"position",
 		Vector2(window_width/2, window_height/2 -20),
 		2)
 	yield(tween, "finished")
@@ -148,4 +156,5 @@ func _big_explosion():
 	var new = BIG_EXPLOSION.instance()
 	new.global_position = posExplosions.global_position
 	get_tree().current_scene.add_child(new)
+
 

@@ -149,7 +149,6 @@ anims/on = SubResource( 6 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 1 )]
 collision_layer = 8
-label = false
 
 [node name="CS" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource( 8 )
