@@ -588,7 +588,7 @@ states/Right/node = SubResource( 11 )
 states/Right/position = Vector2( 541, 75 )
 transitions = [ "HardLeft", "Left", SubResource( 12 ), "Left", "Center", SubResource( 13 ), "Center", "Right", SubResource( 14 ), "Right", "HardRight", SubResource( 15 ), "HardRight", "Right", SubResource( 16 ), "Right", "Center", SubResource( 17 ), "Center", "Left", SubResource( 18 ), "Left", "HardLeft", SubResource( 19 ) ]
 start_node = "Center"
-graph_offset = Vector2( -203, -20 )
+graph_offset = Vector2( -55.4238, -20 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=21]
 
@@ -680,6 +680,7 @@ hframes = 5
 frame = 2
 
 [node name="Hurtbox" parent="." instance=ExtResource( 6 )]
+visible = false
 collision_layer = 8
 
 [node name="CS_Center" type="CollisionPolygon2D" parent="Hurtbox"]
@@ -694,6 +695,7 @@ polygon = PoolVector2Array( -8, 19, -7, 7, -5, -1, -5, -14, -1, -23, 2, -23, 5, 
 disabled = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PoolVector2Array( -9, 23, -9, -3, -6, -3, -4, -18, -1, -23, 1, -23, 4, -18, 6, -3, 9, -3, 9, 23 )
 
 [node name="Exhaust" parent="." instance=ExtResource( 2 )]

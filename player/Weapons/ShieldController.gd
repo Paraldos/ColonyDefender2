@@ -15,6 +15,7 @@ func _on_megashield_off():
 #################################################
 func _megashield():
 	if Utils.player.energy <= 0: return
+	if Utils.player.mega_shield == 0: return
 	if aktive: return
 	###
 	if Input.is_action_just_pressed("ui_megashield"):

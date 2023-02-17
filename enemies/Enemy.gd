@@ -14,6 +14,8 @@ var exploding = false
 
 func _ready():
 	_get_db_variables()
+	Utils.missionStats.credits.level += credits *50
+	Utils.missionStats.enemies.level += 1
 
 func _get_db_variables():
 	hp = MyDb.enemies[_get_name()].hp
@@ -43,6 +45,7 @@ func _on_Hurtbox_hit(damage):
 func _death():
 	if exploding: return
 	if hp <= 0:
+		Utils.missionStats.enemies.player += 1
 		exploding = true
 		call_deferred("_powerup")
 		call_deferred("_coins")

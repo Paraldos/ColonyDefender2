@@ -1,25 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://theme/h1.tres" type="Theme" id=1]
 [ext_resource path="res://theme/BtnTemplate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menu/Menu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://audio/CreditCounter.wav" type="AudioStream" id=4]
 [ext_resource path="res://menu/StageCleared/StageCleared.gd" type="Script" id=5]
 
 [node name="Menu" instance=ExtResource( 3 )]
 script = ExtResource( 5 )
 aktivate_pause = false
 
-[node name="AudioCounter" type="AudioStreamPlayer" parent="." index="0"]
-unique_name_in_owner = true
-stream = ExtResource( 4 )
-
-[node name="TimerCounter" type="Timer" parent="." index="1"]
-unique_name_in_owner = true
-wait_time = 0.03
-one_shot = true
-
-[node name="C" parent="." index="4"]
+[node name="C" parent="." index="2"]
 margin_left = 131.0
 margin_top = 68.0
 margin_right = -131.0
@@ -30,41 +20,50 @@ margin_right = 194.0
 margin_bottom = 120.0
 
 [node name="Header" type="Label" parent="C/MC/VC" index="0"]
-margin_top = 17.0
+margin_top = 6.0
 margin_right = 194.0
-margin_bottom = 39.0
+margin_bottom = 28.0
 theme = ExtResource( 1 )
 text = "- Stage Cleared -"
 align = 1
 uppercase = true
 
-[node name="Control2" type="Control" parent="C/MC/VC" index="1"]
-margin_top = 44.0
+[node name="c" type="Control" parent="C/MC/VC" index="1"]
+margin_top = 33.0
 margin_right = 194.0
-margin_bottom = 44.0
+margin_bottom = 33.0
 
-[node name="CreditsLabel" type="Label" parent="C/MC/VC" index="2"]
+[node name="LabelCredits" type="Label" parent="C/MC/VC" index="2"]
 unique_name_in_owner = true
-margin_top = 49.0
+margin_top = 38.0
 margin_right = 194.0
-margin_bottom = 66.0
-text = "Credits: 0"
+margin_bottom = 55.0
+text = "Credits: 0 von 0"
 align = 1
+autowrap = true
 
-[node name="Control" type="Control" parent="C/MC/VC" index="3"]
-margin_top = 71.0
+[node name="LabelEnemies" type="Label" parent="C/MC/VC" index="3"]
+unique_name_in_owner = true
+margin_top = 60.0
 margin_right = 194.0
-margin_bottom = 81.0
+margin_bottom = 77.0
+text = "Enemies: 0 von 0"
+align = 1
+autowrap = true
+
+[node name="c2" type="Control" parent="C/MC/VC" index="4"]
+margin_top = 82.0
+margin_right = 194.0
+margin_bottom = 92.0
 rect_min_size = Vector2( 0, 10 )
 
-[node name="BtnHome" parent="C/MC/VC" index="4" instance=ExtResource( 2 )]
+[node name="BtnHome" parent="C/MC/VC" index="5" instance=ExtResource( 2 )]
 anchor_right = 0.0
 margin_left = 53.0
-margin_top = 86.0
+margin_top = 97.0
 margin_right = 140.0
-margin_bottom = 103.0
+margin_bottom = 114.0
 text = "Home"
 startFocus = true
 
-[connection signal="timeout" from="TimerCounter" to="." method="_on_TimerCounter_timeout"]
 [connection signal="pressed" from="C/MC/VC/BtnHome" to="." method="_on_BtnHome_pressed"]

@@ -84,15 +84,15 @@ func _attack():
 				yield(get_tree().create_timer(0.2), "timeout")
 
 #################################################
-func _on_Hurtbox_hit(dmg):
+func _on_Hurtbox_hit(damage):
 	if !aktive: return
 	if animHit.is_playing(): return
 	###
-	Utils._dmg_label(dmg, body.position)
+	Utils._dmg_label(damage, body.position)
 	animHit.play("hit")
 	###
-	if dmg > 15: dmg = 15
-	hp -= dmg
+	if damage > 15: damage = 15
+	hp -= damage
 	bossUi._update_hp(hp)
 	_death()
 

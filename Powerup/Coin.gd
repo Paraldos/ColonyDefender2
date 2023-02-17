@@ -9,5 +9,6 @@ func _explosive_movement(speed = 2):
 
 func _pickup():
 	Utils.player.credits += 50
+	Utils.missionStats.credits.player += 50
 	MySignals.emit_signal("credits_update")
 

@@ -1,40 +1,33 @@
 extends "res://menu/Menu.gd"
 
-onready var creditsLabel = $"%CreditsLabel"
-onready var audioCounter = $"%AudioCounter"
-onready var timerCounter = $"%TimerCounter"
-var stage_credits = 0
-var credits_counter = 0
+onready var labelCredits = $"%LabelCredits"
+onready var labelEnemies = $"%LabelEnemies"
+onready var labelList = [labelCredits, labelEnemies]
 
 #################################################
 func _ready():
-	_count_credits()
+	_make_invisible()
+	_fill_label(labelCredits, "credits")
+	_fill_label(labelEnemies, "enemies")
+	_make_visible()
 
-#################################################
-func _count_credits():
-	stage_credits = Utils.player.credits
-	yield(get_tree().create_timer(0.5), "timeout")
-	timerCounter.start()
+###
+func _fill_label(label, element):
+	var title = Utils._id_to_label(element)
+	var playerResult = Utils.missionStats[element].player
+	var LevelResult = Utils.missionStats[element].level
+	label.text = "%s: %s of %s" % [title, playerResult, LevelResult]
 
-func _on_TimerCounter_timeout():
-	if _update_credits_counter() == 0: return
-	###
-	audioCounter.play()
-	credits_counter += _update_credits_counter()
-	creditsLabel.text = "Credits: %s" % credits_counter
-	### restart counter
-	timerCounter.start()
+###
+func _make_invisible():
+	for label in labelList:
+		label.modulate = Color("00ffffff")
 
-func _update_credits_counter():
-	var rest = stage_credits - credits_counter
-	if rest <= 0: return 0
-	if rest <= 5: return 1
-	if rest <= 10: return 2
-	if rest <= 50: return 5
-	if rest <= 100: return 10
-	if rest <= 500: return 50
-	if rest <= 1000: return 100
-	return 1000
+###
+func _make_visible():
+	for label in labelList:
+		yield(get_tree().create_timer(0.5), "timeout")
+		label.modulate = Color("ffffff")
 
 #################################################
 func _on_BtnHome_pressed():

@@ -4,8 +4,9 @@ extends Node
 var rng = RandomNumberGenerator.new()
 var window_width = 480
 var window_height = 270
+###
 var newPlayer = {
-	credits = 50000,
+	credits = 0,
 	hp = 0,
 	energy_max = 4,
 	energy = 0,
@@ -17,7 +18,7 @@ var newPlayer = {
 	gun_level = 0,
 	hp_level = 0,
 	magnet_level = 0,
-	mega_bombe = 1,
+	mega_bombe = 0,
 	mega_laser = 0,
 	mega_shield = 0,
 }
@@ -25,6 +26,12 @@ var oldPlayer = {}
 var player = {}
 var player_pos
 var player_node
+###
+var missionStats = {}
+var missionStatsTemplate = {
+	enemies = {level = 0, player = 0},
+	credits = {level = 0, player = 0}
+}
 
 #################################################
 func _get_gun_dmg():
@@ -40,10 +47,12 @@ func _enter_tree():
 #################################################
 func _new_game():
 	player = newPlayer.duplicate()
-	_start_new_mission()
 
 func _start_new_mission():
 	oldPlayer = player.duplicate()
+	###
+	missionStats = missionStatsTemplate.duplicate()
+	###
 	player.hp = _get_hp_max()
 	player.energy = player.energy_max
 

@@ -3,12 +3,16 @@
 [ext_resource path="res://enemies/Debris/Debris.tscn" type="PackedScene" id=1]
 
 [node name="Debris02" instance=ExtResource( 1 )]
+position = Vector2( 0, -32 )
 
 [node name="Sprite" parent="." index="0"]
 frame = 2
 
 [node name="CP" type="CollisionPolygon2D" parent="Sprite/Hurtbox" index="0"]
-polygon = PoolVector2Array( -25, 18, -25, 5, -23, 2, -16, 2, -16, -7, -12, -11, -11, -14, -9, -19, 5, -19, 14, -18, 14, -10, 25, -7, 25, 2, 23, 7, 14, 7, 14, 16, 9, 21, -9, 21, -14, 20, -20, 19, -24, 19 )
+polygon = PoolVector2Array( -22, 14, -27, 7, -27, 4, -21, 0, -17, -3, -16, -5, -16, -7, -11, -11, -10, -19, 9, -19, 9, -22, 11, -23, 14, -18, 14, -12, 19, -12, 25, -4, 25, 0, 21, 0, 20, 6, 16, 12, 14, 12, 14, 16, 9, 21, -8, 21, -14, 20, -16, 16, -16, 14 )
+
+[node name="Hitbox" parent="Sprite" index="2"]
+visible = false
 
 [node name="CP" type="CollisionPolygon2D" parent="Sprite/Hitbox" index="0"]
-polygon = PoolVector2Array( -25, 18, -25, 5, -23, 2, -16, 2, -16, -7, -12, -11, -11, -14, -9, -19, 5, -19, 14, -18, 14, -10, 25, -7, 25, 2, 23, 7, 14, 7, 14, 16, 9, 21, -9, 21, -14, 20, -20, 19, -24, 19 )
+polygon = PoolVector2Array( -22, 14, -28, 6, -28, 4, -26, -2, -19, -5, -16, -5, -16, -7, -11, -11, -10, -19, 9, -19, 9, -22, 11, -23, 14, -18, 14, -12, 19, -12, 26, -2, 26, 0, 21, 0, 20, 6, 16, 12, 14, 12, 14, 16, 9, 21, -8, 21, -14, 20, -16, 16, -16, 14 )

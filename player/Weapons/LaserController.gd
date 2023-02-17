@@ -14,6 +14,7 @@ func _on_megalaser_off():
 #################################################
 func _megalaser():
 	if Utils.player.energy <= 0: return
+	if Utils.player.mega_laser == 0: return
 	if aktive: return
 	###
 	if Input.is_action_just_pressed("ui_megalaser"):
